@@ -1,43 +1,56 @@
 # -*- coding: utf-8 -*-
-"""
--------------------------------------------------------------------------------
-     
-     Prof. Francisco Assis de Oliveira Nascimento
-     Digital Signal Processing Group - DSPG/ENE/FT/UnB
-     Electrical Engineering Department
-     Faculty of Technology
-     University of Brasilia, Brazil
-     
--------------------------------------------------------------------------------
-"""
+
 import numpy as np
 import scipy
-#from scipy.stats import skew
-#from scipy.stats import kurtosis
 import skimage
 from skimage import feature, measure, data, color, exposure, io
 import cv2
-#------------------------------------------------------------------------------
-# Pause program
-#------------------------------------------------------------------------------
-def pause():
-    programPause = input("Press the <ENTER> key to continue...") 
-#------------------------------------------------------------------------------   
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
-#--------------------------------------------------------------------------
-#
-#   Compute First Order Statistics.
-#   FAON May 15, 2022.
-#--------------------------------------------------------------------------
+
+from collections import namedtuple
+
+Features = namedtuple(
+    "Features",
+    [
+        "minimo",
+        "maximo",
+        "media",
+        "std",
+        "var",
+        "mediana",
+        "assimetria",
+        "curtose",
+        "amplitude_ao_quadrado",
+        "entropia_completa",
+        "entropia_dos_bins",
+        "energia_media",
+        "rms",
+        "desvio_absoluto_medio",
+        "p925",
+        "p850",
+        "p150",
+        "p75",
+        "amplitude_interquartil",
+        "uniformidade",
+        "media_robusta",
+    ],
+)
+
 def Compute_First_Order_Statistics_Features(image, Bins):        
-    features = []     
-    N, M = image.shape                          
+    features = []   
     histRange = (0, 256) # the upper boundary is exclusive.
-    hist = cv2.calcHist(image, [0], None, [Bins], histRange) 
+    image = image @ np.array([0.2125, 0.7154, 0.0721]) # Convertendo para escala de cinza
+    N, M = image.shape  
+    image = image.astype(np.uint8) # Convertendo para uint8 para garantir que os valores estejam na faixa de 0 a 255.
+    image = image.flatten().astype(np.float64) # Achata a imagem e converte para float64 para os cálculos.
+    # hist = cv2.calcHist(image, [0], None, [Bins], histRange)
+    hist, _ = np.histogram(
+        image,
+        bins=Bins,
+        range=histRange,
+        density=False,
+    )
     histogram = hist.flatten()
-    hist_sum = sum(histogram)
+    hist_sum = sum(histogram)                        
     #----------------------------------------------------------------------
     # Power Mass Function.
     #----------------------------------------------------------------------
@@ -93,11 +106,11 @@ def Compute_First_Order_Statistics_Features(image, Bins):
     image_p100 = np.percentile(image, 10.0)        
     Np_10_90 = 0 
     rMAD = 0       
-    for n in range(N):
-        for m in range(M):
-            if( (image[n,m]) >= image_p100) and (image[n,m] <= image_p900):
-                Np_10_90 += 1
-                rMAD += np.abs(image[n,m])               
+    for i in range(len(image)):
+        # for m in range(M):
+        if( (image[i]) >= image_p100) and (image[i] <= image_p900):
+            Np_10_90 += 1
+            rMAD += np.abs(image[i]) # this is not a MAD...               
     rMAD /= Np_10_90
     '''
     print (N*M)
@@ -106,38 +119,46 @@ def Compute_First_Order_Statistics_Features(image, Bins):
     print('\n\n', rMAD, Np_10_90)
     '''
     #----------------------------------------------------------------------       
-    features = [
-        image_min, 
-        image_max, 
-        image_mean, 
-        image_std, 
-        image_var,
-        image_median,
-        image_skew,
-        image_kurtpsis,
-        square_range,
-        image_entropy,
-        bins_entropy,
-        image_norm_energy,
-        image_rms,
-        image_abs_deviation,
-        image_p925,
-        image_p850,
-        image_p75,
-        image_p150,
-        interquartile_range,
-        image_uniformity,
-        rMAD]                   
+    features = Features(
+        minimo=image_min,
+        maximo=image_max,
+        media=image_mean,
+        std=image_std,
+        var=image_var,
+        mediana=image_median,
+        assimetria=image_skew,
+        curtose=image_kurtpsis,
+        amplitude_ao_quadrado=square_range,
+        entropia_completa=image_entropy,
+        entropia_dos_bins=bins_entropy,
+        energia_media=image_norm_energy,
+        rms=image_rms,
+        desvio_absoluto_medio=image_abs_deviation,
+        p925=image_p925,
+        p850=image_p850,
+        p150=image_p150,
+        p75=image_p75,
+        amplitude_interquartil=interquartile_range,
+        uniformidade=image_uniformity,
+        media_robusta=rMAD,
+    )                  
     return features                        
 #------------------------------------------------------------------------------ 
-path = 'COVID-1.png'
+if __name__ == "__main__":
+    """Sugestão de uso das funções neste script."""
+    from glob import glob
+    from os import path
+    from pprint import pprint
 
-#path = 'D:/Dropbox/Python_Imports/Data/Chest_X_Ray_collection_256x256_3_classes/COVID_resized/1.jpg'
-image = skimage.io.imread(path)
-Bins = 16 #Used to compute  the Bins entropy.
-first_Oder_Statistics_features = Compute_First_Order_Statistics_Features(image, Bins)
-#first_Oder_Statistics_features = np.round(first_Oder_Statistics_features, 3)
-print('\n', first_Oder_Statistics_features)
+    pasta = path.join("trabalho_6", "imagens")
+    imagens = glob(path.join(pasta, "*.png")) + glob(path.join(pasta, "*.jpg"))
+
+    for arquivo in imagens:
+        print(f"Extraindo features de {arquivo}...")
+        image = skimage.io.imread(arquivo)
+        Bins = 16 #Used to compute  the Bins entropy.
+        first_Oder_Statistics_features = Compute_First_Order_Statistics_Features(image, Bins)
+        pprint(dict(first_Oder_Statistics_features._asdict()))
 #------------------------------------------------------------------------------    
     
     
