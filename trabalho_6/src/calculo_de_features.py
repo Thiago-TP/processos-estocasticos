@@ -65,12 +65,30 @@ Features = namedtuple(
 EPSILON = 2.2e-16
 
 
-def rgb_para_cinza(imagem_bgr: np.ndarray) -> np.ndarray:
-    """Converte uma imagem RGB para escala de cinza usando a fórmula de luminosidade."""
-    if imagem_bgr.ndim != 3 or imagem_bgr.shape[2] != 3:
+def rgb_para_cinza(imagem_rgb: np.ndarray) -> np.ndarray:
+    """
+    Converte uma imagem RGB para escala de cinza usando a fórmula de luminosidade.
+    
+    Parâmetros
+    ---
+    - imagem_rgb: np.ndarray
+        Imagem RGB de entrada, com formato (altura, largura, 3), 
+        sendo os canais na ordem R, G, B e valores entre 0 e 255 inclusive.
+    
+    Retorna
+    ---
+    - np.ndarray
+        Imagem em escala de cinza, com formato (altura, largura) 
+        e valores inteiros sem sinal entre 0 e 255 inclusive.
+
+    Levanta
+    ---
+    - ValueError: Se a imagem de entrada não for RGB (3 canais).
+    """
+    if imagem_rgb.ndim != 3 or imagem_rgb.shape[2] != 3:
         raise ValueError("A imagem deve ser RGB (3 canais).")
-    pesos_bgr = np.array([0.2125, 0.7154, 0.0721])  # pesos para os canais B, G e R, respectivamente
-    return np.dot(imagem_bgr, pesos_bgr).astype(np.uint8)
+    pesos_rgb = np.array([0.2125, 0.7154, 0.0721])
+    return np.dot(imagem_rgb, pesos_rgb).astype(np.uint8)
 
 
 def calcula_estatisticas_de_primeira_ordem(imagem: np.ndarray, bins: int) -> namedtuple:
