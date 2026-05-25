@@ -68,41 +68,47 @@ EPSILON = 2.2e-16
 def rgb_para_cinza(imagem_rgb: np.ndarray) -> np.ndarray:
     """
     Converte uma imagem RGB para escala de cinza usando a fórmula de luminosidade.
-    
+
     Parâmetros
     ---
     - imagem_rgb: np.ndarray
-        Imagem RGB de entrada, com formato (altura, largura, 3), 
+        Imagem RGB de entrada, com formato (altura, largura, 3),
         sendo os canais na ordem R, G, B e valores entre 0 e 255 inclusive.
-    
+
     Retorna
     ---
     - np.ndarray
-        Imagem em escala de cinza, com formato (altura, largura) 
+        Imagem em escala de cinza, com formato (altura, largura)
         e valores inteiros sem sinal entre 0 e 255 inclusive.
 
     Levanta
     ---
     - ValueError: Se a imagem de entrada não for RGB (3 canais).
     """
+    if imagem_rgb.ndim == 2:
+        return imagem_rgb.astype(np.uint8)
     if imagem_rgb.ndim != 3 or imagem_rgb.shape[2] != 3:
-        raise ValueError("A imagem deve ser RGB (3 canais).")
+        raise ValueError(
+            f"A imagem deve ser RGB (3 canais), "
+            f"mas tem {imagem_rgb.ndim} dimensões e "
+            f"{imagem_rgb.shape[2]} canais."
+        )
     pesos_rgb = np.array([0.2125, 0.7154, 0.0721])
     return np.dot(imagem_rgb, pesos_rgb).astype(np.uint8)
 
 
-def calcula_estatisticas_de_primeira_ordem(imagem: np.ndarray, bins: int) -> namedtuple:
+def calcula_features_trabalho_6(imagem: np.ndarray, bins: int) -> namedtuple:
 
     if imagem.ndim != 2:
         raise ValueError(
             f"A imagem deve estar em escala de cinza (2D), mas tem dimensões {imagem.ndim}!"
         )
-    
+
     if imagem.dtype != np.uint8:
         raise ValueError(
             f"A imagem deve ter tipo de dado uint8, mas tem tipo {imagem.dtype}!"
         )
-    
+
     # Achata, converte imagem em float para os cálculos
     imagem = imagem.flatten().astype(np.float64)
 
@@ -150,9 +156,9 @@ def calcula_estatisticas_de_primeira_ordem(imagem: np.ndarray, bins: int) -> nam
     p75 = np.percentile(imagem, 7.5)
     amplitude_interquartil = np.percentile(imagem, 75) - np.percentile(imagem, 25)
 
-    # A implementação original do rMAD / damr era equivalente 
+    # A implementação original do rMAD / damr era equivalente
     # à média dos pixels de percentis 10 entre e 90.
-    # Não creio que isso configure um desvio, mas segue uma reimplementação 
+    # Não creio que isso configure um desvio, mas segue uma reimplementação
     # mais legível e eficiente do mesmo cálculo.
     mask = (imagem >= p100) & (imagem <= p900)
     media_robusta = np.mean(imagem[mask])
@@ -190,11 +196,11 @@ if __name__ == "__main__":
 
     from imageio.v2 import imread
 
-    pasta = path.join("trabalho_6", "imagens")
+    pasta = path.join("trabalho_6", "imagens", "teste")
     imagens = glob(path.join(pasta, "*.png")) + glob(path.join(pasta, "*.jpg"))
 
     for arquivo in imagens:
         print(f"Extraindo features de {arquivo}...")
         imagem_de_teste = rgb_para_cinza(np.asarray(imread(arquivo)))
-        features = calcula_estatisticas_de_primeira_ordem(imagem_de_teste, bins=16)
+        features = calcula_features_trabalho_6(imagem_de_teste, bins=16)
         pprint(dict(features._asdict()))
