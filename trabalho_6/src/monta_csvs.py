@@ -19,12 +19,21 @@ from calculo_de_features_trabalho_6 import calcula_features_trabalho_6, rgb_para
 from imageio.v2 import imread
 
 
+# Limite para considerar duas imagens como "muito similares" com base na distância entre suas features
+LIMITE_SIMILARIDADE = 1e-2
+
+# Quantidade mínima de imagens para uma classe antes de aplicar o filtro de similaridade
+MINIMO_IMAGENS = 3
+
+
 def extrair_features_para_csv(
     dir_imagens: str = "trabalho_6/imagens/datasets",
     dir_saida: str = "trabalho_6/csvs",
     tipo_features: str = "trabalho_6",
     bins: int = 256,
-):
+    remover_similares: bool = True,
+    verbose: bool = True,
+) -> str:
     """
     Extrai features para as imagens em dir_imagens e escreve os resultados em CSVs em dir_saida.
     O CSV resultante terá uma coluna "rotulo" indicando o rótulo da imagem (extraído do nome do subdiretório)
@@ -36,10 +45,12 @@ def extrair_features_para_csv(
     - dir_saida: diretório onde os arquivos CSV serão escritos.
     - tipo_features: "trabalho_4" ou "trabalho_6", indicando quais features extrair.
     - bins: quantidade de bins a usar para as features que dependem do histograma.
+    - remover_similares: se True, remove imagens muito similares dentro de cada classe com base na distância entre suas features.
+    - verbose: se True, imprime mensagens de progresso.
 
     Retorna
     ---
-    - None (escreve arquivos CSV em dir_saida)
+    - str: caminho para o arquivo CSV gerado.
 
     Levanta
     ---
@@ -56,9 +67,9 @@ def extrair_features_para_csv(
     arquivos_imagens = glob(path.join(dir_imagens, "*", "*.*g"))
 
     dados_csv = []
-
     for arquivo in arquivos_imagens:
-        print(f"    Processando {arquivo}...")
+        if verbose:
+            print(f"    Processando {arquivo}...")
         imagem = rgb_para_cinza(np.asarray(imread(arquivo)).astype(np.uint8))
         features = funcao_calculo_features(imagem, bins=bins)
         rotulo = path.basename(path.dirname(arquivo))
@@ -67,6 +78,33 @@ def extrair_features_para_csv(
 
     colunas = ["nome_imagem"] + list(features._fields) + ["rotulo"]
     df = pd.DataFrame(dados_csv, columns=colunas)
+
+    # Remove imagens muito similares dentro de cada classe, se a classe tiver mais do que MINIMO_IMAGENS
+    sufixo = "" # sufixo no nome do CSV indicando se imagens foram desconsideradas
+    if remover_similares:
+        df_filtrado = []
+        for rotulo, grupo in df.groupby("rotulo"):
+            if len(grupo) > MINIMO_IMAGENS:
+                def normaliza(f):
+                    """Padroniza as features para terem média 0 e desvio padrão 1, evitando que escalas diferentes dominem a distância."""
+                    return (f - np.mean(f)) / np.std(f)
+                # print(grupo)
+                features_array = np.stack(normaliza(grupo[list(features._fields)].values))
+                distancias = np.linalg.norm(features_array[:, None] - features_array, axis=-1)
+                # Preenche a triangular superior da matriz de distâncias com infinito 
+                # para evitar contar distâncias entre mesmas imagens
+                mask = np.triu(np.ones_like(distancias, dtype=bool))
+                distancias[mask] = np.inf
+                similaridades = (distancias < LIMITE_SIMILARIDADE).sum(axis=1)
+                grupo_filtrado = grupo[similaridades == 0]  # Mantém apenas imagens sem similares
+                df_filtrado.append(grupo_filtrado)
+                removidos = grupo[similaridades > 0]["nome_imagem"].tolist()
+                if removidos:
+                    print(f"    Classe {rotulo}: Removidas {len(removidos)} imagens muito similares: {removidos}")
+                    sufixo = "-PARCIAL"
+            else:
+                df_filtrado.append(grupo)  # Mantém todas as imagens se a classe tiver poucas amostras
+        df = pd.concat(df_filtrado).reset_index(drop=True)
 
     # Converte rótulo categórico para numérico
     traducao_rotulos = {
@@ -80,9 +118,11 @@ def extrair_features_para_csv(
     df = df.sort_values(by=["rotulo", "nome_imagem"]).reset_index(drop=True)
 
     # Escreve o DataFrame em CSV
-    nome_csv = f"{tipo_features}_features_bins_{bins}.csv"
+    nome_csv = f"{tipo_features}_features_bins_{bins}{sufixo}.csv"
     df.to_csv(path.join(dir_saida, nome_csv), index=False)
     print(f"    Features extraídas e salvas em {path.join(dir_saida, nome_csv)}")
+
+    return path.join(dir_saida, nome_csv)
 
 
 def plota_matriz_correlacao(csv: str, dir_saida: str = "trabalho_6/plots"):
@@ -142,17 +182,20 @@ if __name__ == "__main__":
     inicio = time()
     for tipo in tipos:
         for bins in quantizacoes:
-            # print(f"Extraindo features para {tipo} com {bins} bins...")
-            # extrair_features_para_csv(tipo_features=tipo, bins=bins)
-
-            # print(f"Gerando matriz de correlação para {tipo} com {bins} bins...")
-            csv_gerado = path.join(
-                "trabalho_6/csvs", f"{tipo}_features_bins_{bins}.csv"
+            print(f"Extraindo features para {tipo} com {bins} bins...")
+            csv_gerado = extrair_features_para_csv(
+                tipo_features=tipo,
+                bins=bins,
+                remover_similares=True,
+                verbose=False
             )
+
+            # Sugestão: comentar os plots e fazê-los após gerar os CSVs
+            # print(f"Gerando matriz de correlação para {tipo} com {bins} bins...")
             # plota_matriz_correlacao(csv_gerado)
 
-            print(f"Gerando dispersões para {tipo} com {bins} bins...")
-            plota_dispersoes(csv_gerado)
+            # print(f"Gerando dispersões para {tipo} com {bins} bins...")
+            # plota_dispersoes(csv_gerado)
     fim = time()
 
     delta_t = fim - inicio
