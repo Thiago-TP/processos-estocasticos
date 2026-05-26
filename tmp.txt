@@ -424,4 +424,4 @@ assimetria              -0.416824              0.312742   0.464986    1.000000 -
 curtose                  0.210339             -0.296895  -0.525442   -0.917529  1.000000 -0.644522
 entropia                -0.023875              0.822640   0.744808    0.702028 -0.644522  1.000000
     Classe todas: Matriz de correlação salva como matriz_correlacao_condicionada_classe_todas_trabalho_4_features_bins_32-PARCIAL.pdf.
-Tempo total: 2.85 segundos (0.05 minutos)
+Tempo total: 2.80 segundos (0.05 minutos)
