@@ -64,7 +64,7 @@ def plota_correlacao_da_classe(csv: str, X_train_classe: pd.DataFrame, classe: s
         linewidths=0.5,
         cbar_kws={"shrink": 0.5},
     )
-    plt.title(f"Matriz de Correlação da Classe {classe} - {nome_csv}")
+    # plt.title(f"Matriz de Correlação da Classe {classe} - {nome_csv}")
     plt.savefig(path.join(out_dir, nome_matriz), bbox_inches="tight")
     plt.close()
 
@@ -203,15 +203,18 @@ def main(out_dir: str = "trabalho_6/resultados"):
             x[constantes_classe] = np.nan
             plota_correlacao_da_classe(
                 csv, 
-                x.corr(numeric_only=True), 
+                x, 
                 classe, 
                 out_dir
             )
 
-        X_train = X_train.drop(columns=features_correlacionadas.union(features_constantes))
-        X_test = X_test.drop(columns=features_correlacionadas.union(features_constantes))
+        features_mas = list(features_correlacionadas.union(features_constantes))
+        X_train_todas = X_train.copy()
+        X_train_todas[features_mas] = np.nan
+        plota_correlacao_da_classe(csv, X_train_todas, "todas", out_dir)
 
-        plota_correlacao_da_classe(csv, X_train, "todas", out_dir)
+        X_train = X_train.drop(columns=features_mas)
+        X_test = X_test.drop(columns=features_mas)
 
         # Instancia os classificadores
         nb = GaussianNB()

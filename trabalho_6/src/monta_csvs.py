@@ -186,16 +186,15 @@ if __name__ == "__main__":
             csv_gerado = extrair_features_para_csv(
                 tipo_features=tipo,
                 bins=bins,
-                remover_similares=True,
+                remover_similares=False,
                 verbose=False
             )
 
-            # Sugestão: comentar os plots e fazê-los após gerar os CSVs
-            # print(f"Gerando matriz de correlação para {tipo} com {bins} bins...")
-            # plota_matriz_correlacao(csv_gerado)
+            print(f"Gerando matriz de correlação para {tipo} com {bins} bins...")
+            plota_matriz_correlacao(csv_gerado)
 
-            # print(f"Gerando dispersões para {tipo} com {bins} bins...")
-            # plota_dispersoes(csv_gerado)
+            print(f"Gerando dispersões para {tipo} com {bins} bins...")
+            plota_dispersoes(csv_gerado)
     fim = time()
 
     delta_t = fim - inicio
