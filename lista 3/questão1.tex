@@ -1,0 +1,50 @@
+\section{Questão 1}
+Considere o experimento de jogar uma moeda três vezes consecutivamente. 
+Seja $X$ a variável randômica que explicita a quantidade de ``caras'' obtidas. 
+Assumimos que as saídas (o resultado de cada vez em que a moeda é jogada) 
+são independentes e a probabilidade de uma ``cara'' é $p$. \\
+
+\textbf{\sffamily \color{vermelhoescuro} Sugestão:} 
+modele como um processo de Bernoulli.
+
+\begin{itemize}
+    \item [a)] 
+    Qual é a faixa dinâmica de $X$?
+    
+    \item [b)] 
+    Encontre as probabilidades para: 
+    $P(X = 0)$, 
+    $P(X = 1)$, 
+    $P(X = 2)$ e 
+    $P(X = 3)$.
+\end{itemize}
+
+\respostas
+\begin{itemize}
+    \item [a)]
+    Como são feitos 3 lançamentos, o número mínimo de caras é 0 e o máximo é 3.
+    Logo a faixa dinâmica de $X$ é o intervalo discreto $\{0, 1, 2, 3\}$.
+
+    \item [b)]
+    O resultado de um lance pode ser modelado como uma variável aleatória binária $x$ indicando o ocorrência ou não de cara.
+    %
+    Denotando a ocorrência de cara por $x=1$ e a de coroa por $x=0$, $x$ segue uma distribuição de Bernoulli, $x\sim \mathrm{Bernoulli}(p)$.
+    %
+    Repetindo-se os lances $n$ vezes, a probabilidade de que $0 \leq k \leq n$ caras ocorram é dada por uma distribuição Binomial:
+    %
+    \begin{equation}
+        P(X = k) 
+        = \binom{n}{k} p^k (1-p)^{(n-k)}
+        = \frac{n!}{k!(n-k)!} p^k (1-p)^{n-k},
+    \end{equation}
+    %
+    onde a definição de $X$ foi implicitamente estendida para o caso genérico com $k$ lances. 
+    Fixando $n=3$ e variando $k$, obtém-se
+    %
+    \begin{align}
+        P(X = 0) &= \binom{3}{0} p^0 (1-p)^{3-0} = (1-p)^3 \\
+        P(X = 1) &= \binom{3}{1} p^1 (1-p)^{3-1} = 3p(1-p)^2 \\
+        P(X = 2) &= \binom{3}{2} p^2 (1-p)^{3-2} = 3p^2(1-p)^1 \\
+        P(X = 3) &= \binom{3}{3} p^3 (1-p)^{3-3} = p^3
+    \end{align}
+\end{itemize}

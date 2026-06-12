@@ -1,0 +1,396 @@
+\documentclass{article}
+\usepackage[brazil]{babel}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+\title{Processos Estocásticos}
+\author{Thiago Tomás de Paula}
+\date{4 de maio de 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{\sffamily Questão 1}
+Um ``Coffe Shop'' tem 4 tipos diferentes de café. Você pode pedir seu café em uma xícara
+pequena, média ou grande. Você também pode optar por adicionar creme, açúcar ou leite (qualquer
+combinação é possível. Por exemplo, você pode optar por adicionar os três). 
+
+\begin{itemize}
+    \item [a)] 
+    De quantas maneiras você pode pedir seu café?
+    
+    \item [b)] 
+    Durante quatro vezes consecutivas você visita esse “Coffe Shop” com um amigo e pede para ele escolher aleatoriamente um tipo de café. Qual é a probabilidade dele não escolher, pelo menos uma vez: em uma xícara pequena e adicionar simultaneamente creme, açúcar e leite
+
+    \item [c)]
+    Para a mesma situação da letra (b), qual é a probabilidade dele não escolher pelo menos uma vez: xícara média, café com leite e açúcar?
+\end{itemize}
+\rule{\linewidth}{0.5pt}
+
+\noindent\textbf{\sffamily Respostas}
+\begin{itemize}
+    \item [a)] 
+    Para os adicionais, existem $3\times 2\times 1 = 3! = 6$ combinações possíveis, assumindo que uma opção não pode ser repetida. 
+    Temos então
+    %
+    \begin{equation*}
+    \boxed{
+        \underbrace{4}_{\text{Tipos de café}} \times 
+        \underbrace{3}_{\text{Tamanhos de xícara}} \times 
+        \underbrace{6}_{\text{Adicionais}} 
+        = 72
+    }
+    \end{equation*}
+    %
+    maneiras de se pedir o café.
+    
+    \item [b)] 
+    Existem apenas 4 maneiras de se pedir o café impondo que a xícara seja pequena \emph{e} que todos os adicionais estejam presentes, uma para cada tipo de café. 
+    A probabilidade de tal pedido ser feito é então 
+    %
+    \begin{equation*}
+        p_\neg = 
+        \frac{4}{72} =
+        \frac{1}{18}
+    \end{equation*}
+    %
+    de forma que a chance desse pedido \emph{nunca} ser feito mesmo em \emph{quatro} vezes consecutivas se torna
+    %
+    %
+    \begin{equation*}
+    \boxed{
+        p = 
+        (1 - p_\neg)^4 = 
+        \left(\frac{17}{18}\right)^4 \approx
+        79,56\%
+    }
+    \end{equation*}
+    
+
+    \item [c)]
+    Para a mesma situação da letra (b), qual é a probabilidade dele não escolher pelo menos uma vez: xícara média, café com leite e açúcar?
+
+    O pedido com xícara média, leite e açúcar pode ser feito de 8 maneiras diferentes, isto é, adicionando ou não o creme para cada um dos 4 tipos de café. A probabilidade desse pedido ser feito é então
+    %
+    \begin{equation*}
+        p_\neg = 
+        \frac{8}{72} =
+        \frac{1}{9}
+    \end{equation*}
+    %
+    de forma que a chance desse pedido \emph{nunca} ser feito mesmo em \emph{quatro} vezes consecutivas se torna
+    %
+    %
+    \begin{equation*}
+    \boxed{
+        p = 
+        (1 - p_\neg)^4 = 
+        \left(\frac{8}{9}\right)^4 \approx
+        62,43\%
+    }
+    \end{equation*}
+\end{itemize}
+
+\newpage
+
+\section*{\sffamily Questão 2}
+Considere um experimento contendo quatro cartas marcadas com os números inteiros 1 a 4. No
+experimento se sorteia aleatoriamente um par de cartas da sacola, ou seja, cada par de carta constitui uma saída do experimento randômico.
+
+\begin{itemize}
+\item [a)] Encontre o espaço de amostra $S_1$, para o experimento, se a primeira carta for retornada para a sacola antes que a segunda seja sorteada.
+
+\item [b)] Em $S_1$, qual é a probabilidade de serem sorteadas as cartas com os números (1, 2) ou (2,3) ou (3,4) em uma saída do experimento aleatório.
+
+\item [c)] Em $S_1$ qual é a probabilidade de ser sorteada a carta número 3 dado que a carta1 já foi sorteada?
+
+\item [d)] Em $S_1$, qual é a probabilidade de não serem sorteadas sucessivamente as cartas com os números (2, 4)
+e (1,3).
+
+\item [e)] Encontre o espaço de amostral $S_2$, para experimento, se o primeiro cartão não for retornado para a
+sacola.
+
+\item [f)] Para o espaço amostral $S_2$, qual a probabilidade da carta de ser sorteado o par (3, 3)?
+\item [g)] Em $S_2$, qual a probabilidade de não serem sorteadas os pares (1,2) e (2,1)?
+\item [h)] Em $S_2$, qual probabilidade da carta de número 4 não ser sorteada?
+\end{itemize}
+\rule{\linewidth}{0.5pt}
+
+\textbf{\sffamily Respostas}
+
+\begin{itemize}
+
+\item [a)] Havendo reposição, tanto o sorteio da primeira carta quanto o da segunda têm 4 resultados. 
+Sendo os saques eventos independentes, obtemos $S_1$ pela multiplicação dessas quantidades:
+%
+\begin{equation*}
+\boxed{
+    S_1 = 4 \times 4 = 16
+}
+\end{equation*}
+
+\item [b)] A probabilidade de se observar qualquer par em particular é 
+%
+\begin{equation*}
+\boxed{
+\frac{1}{S_1} = \frac{1}{16} 
+              \approx 6.25\%
+}
+\end{equation*}
+
+\item [c)] Como a carta 3 é uma das 4 opções equiprováveis, a probabilidade condicional é de 
+$1/4 = 25\%$. 
+
+\item [d)] Sendo os resultados consecutivos eventos independentes e a probabilidade de cada resultado $1/16$, obtemos a resposta pelo produto dessa probabilidades:
+%
+\begin{equation*}
+\boxed{
+    p = \frac{1}{S_1} \times \frac{1}{S_1}
+      = \frac{1}{256}
+      \approx 0.39\%
+}
+\end{equation*}
+
+\item [e)] Nesse caso, existem 4 opções para o primeiro cartão retirado, e 3 para o segundo. Tomando o produto, conclui-se que
+%
+\begin{equation*}
+\boxed{
+    S_2 = 4 \times 3 
+        = 12
+}
+\end{equation*}
+
+\item [f)] É impossível sortear um par com números iguais, então a probabilidade é 0.
+\item [g)] A probabilidade de um par em particular ser sorteado é $p_\neg = 1/S_2 = 1/12$. 
+Dessa forma, a probabilidade dos pares $(1,2)$ e $(2,1)$ \emph{não} serem sorteados é 
+%
+\begin{equation*}
+\boxed{
+    p = 1 - p_\neg
+      = \frac{11}{12}
+      \approx 91,67\%
+}
+\end{equation*}
+
+\item [h)] A probabilidade de um número ser sorteado é 
+$p_{\neg, 1} = 1/4 \approx 25\%$
+no primeiro saque e 
+$p_{\neq, 2} = \frac{1}{3}$ no segundo.
+Logo, a probabilidade de $4$ não ser pego nem no primeiro saque nem no segundo é
+%
+\begin{equation*}
+\boxed{
+    p  = (1 - p_{\neg, 1}) (1 - p_{\neg, 2})
+       = \frac{3}{4} \times \frac{2}{3}
+       = \frac{1}{2}
+       = 50\%
+}
+\end{equation*}
+\end{itemize}
+
+\section*{\sffamily Questão 3}
+Um experimento consiste em rolar um dado até obter um 6 com o máximo de 3 jogadas.
+
+\begin{itemize}
+\item [a)] Determine o espaço amostral $S_1$ onde estão presentes todas as possibilidades de interesse.
+
+\item [b)] Qual a probabilidade de após três jogadas do dado, nenhum elemento do espaço amostral $S_1$ acontecer?
+\end{itemize}
+\rule{\linewidth}{0.5pt}
+
+\textbf{\sffamily Respostas}
+
+\begin{itemize}
+\item [a)] 
+Assumindo que o dado deve ser rolado mesmo se um 6 for obtido, existem
+\begin{itemize}
+    \item $6 \times 6 = 36$ maneiras de se obter 6 no primeiro lance, sendo o 2° e 3° quaisquer valores;
+    \item $5 \times 6 = 30$ maneiras de se obter 6 no segundo lance, sendo o 1° lance diferente de 6;
+    \item $5\times 5 = 25$ maneiras de obter 6 apenas no 3° lance.
+\end{itemize}
+Somando as maneiras independentes, temos
+%
+\begin{equation*}
+\boxed{
+    S_1 = 36 + 30 + 25 
+        = 91
+}
+\end{equation*}
+
+\item [b)] 
+Existem $6 \times 6 \times 6 = 216$ resultados possíveis para o caso em que o dado é rolado exatamente 3 vezes, dos quais $S_2=91$ constituem um jogo vitorioso.
+A probabilidade de perder o jogo é então
+%
+\begin{equation*}
+\boxed{
+    p = \frac{216 - S_1}{216}
+      = \frac{125}{216}
+      \approx 57,87\%
+}
+\end{equation*}
+\end{itemize}
+
+\section*{\sffamily Questão 4}
+Um experimento aleatório consiste em jogar 3 dados distintos. Contudo, um dos dados tem 1 (um)
+único ponto desenhado em todas as suas faces.
+
+\begin{itemize}
+\item [a)] Determine o espaço amostral do experimento.
+\item [b)] Qual é a probabilidade de um evento A no qual a somas dos três dados é igual a 8?
+\item [c)] Qual é a probabilidade de um evento B no qual a somas dos três dados é superior a 10?
+\item [d)] Encontre a probabilidade de um evento C onde a soma dos três dados é superior a 12.
+\end{itemize}
+\rule{\linewidth}{0.5pt}
+
+\textbf{\sffamily Respostas}
+
+\begin{itemize}
+\item [a)] 
+Os pares de valores dos dados comuns se combinam em $6\times 6 = 36$ maneiras distintas. 
+Essas combinações ocorrem para cada uma das 3 posições que o dado incomum ocupa (primeiro, segundo e terceiro a ser lançado), de forma que o conjunto amostral tem tamanho
+%
+\begin{equation*}
+\boxed{
+    S = 3\times 36 
+      = 108 
+}
+\end{equation*}
+
+
+\item [b)] 
+Em $A$, os dados comuns retornam os pares 
+$(6, 1)$,
+$(5, 2)$,
+$(4, 3)$,
+$(3, 4)$,
+$(2, 5)$ ou
+$(1, 6)$.
+Cada um destes 6 pares podem ocorrer para cada uma das 3 posições do dado fixo, de forma que existem $6\times 3 = 18$ maneiras de se obter lances com soma 8.
+Logo,
+%
+\begin{equation*}
+\boxed{
+    p(A) = \frac{18}{108}
+         \approx 16,67\%
+}
+\end{equation*}
+
+\item [c)]
+Em $B$, os dados comuns retornam os pares 
+$(6, 4)$,
+$(6, 5)$,
+$(6, 6)$,
+$(4, 6)$ ou
+$(5, 6)$.
+Cada um destes 5 pares podem ocorrer para cada uma das 3 posições do dado fixo, de forma que existem $3\times 5 = 15$ maneiras de se obter lances com soma 11 ou maior.
+Logo,
+%
+\begin{equation*}
+\boxed{
+    p(B) = \frac{15}{108}
+         \approx 13,88\%
+}
+\end{equation*}
+
+\item [d)]
+Em $C$, os dados comuns retornam o par 
+$(6, 6)$.
+Esse par pode ocorrer para cada uma das 3 posições do dado fixo, de forma que existem $3\times 1 = 3$ maneiras de se obter lances com soma 13.
+Logo,
+%
+\begin{equation*}
+\boxed{
+    p(C) = \frac{3}{108}
+         \approx 2,78\%
+}
+\end{equation*}
+\end{itemize}
+
+\section*{\sffamily Questão 5}
+Uma concessionária revendedora de automóveis oferece veículos com as seguintes opções: 
+
+\begin{itemize}
+\item [1)] Com ou sem transmissão automática; 2) Com ou sem ar-condicionado; 
+\item [2)] Com ou sem GPS; 
+\item [3)] Com duas possíveis opções de um sistema de reprodução áudio estéreo; 
+\item [4)] Com quatro cores padrão.
+\end{itemize}
+
+\begin{itemize}
+\item [a)]
+Se o espaço de amostra consistir no conjunto de todos os tipos de veículos possíveis, qual é o número
+de resultados possíveis do espaço amostral?
+
+\item [b)]
+Desenhe o diagrama em árvore para os diferentes tipos de veículos.
+
+\item [c)]
+Se cada tipo de automóvel tem a mesma probabilidade de ser comercializado pela concessionária,
+então, determine a probabilidade do automóvel vendido ter GPS.
+
+\item [d)]
+Qual a probabilidade do automóvel vendido ter GPS dado que ele possui transmissão automática?
+\end{itemize}
+\rule{\linewidth}{0.5pt}
+
+\textbf{\sffamily Respostas}
+
+\begin{itemize}
+\item [a)]
+Multiplicando as maneiras de se configurar os elementos em separado, obtemos
+%
+\begin{equation*}
+\boxed{
+    \underbrace{2}_{\text{Transmissões}} \times
+    \underbrace{2}_{\text{AC}} \times
+    \underbrace{2}_{\text{GPS}} \times
+    \underbrace{2}_{\text{Áudio}} \times
+    \underbrace{4}_{\text{Cores}}
+    =
+    64
+}
+\end{equation*}
+
+\item [b)]
+\begin{center}
+    \begin{tikzpicture}[> = latex]
+        \foreach \t in {45, -45}{
+            \draw (0, 0) -- (\t:2.5) node (prev0) {};
+            
+            \foreach \ac in {30, -30}{
+                \draw (prev0) --++ (\ac:1.75) node (prev1) {};
+                
+                \foreach \gps in {15, -15}{
+                    \draw (prev1) --++ (\gps:1.5) node (prev2) {};
+                
+                    \foreach \a in {10, -10}{
+                        \draw (prev2) --++ (\a:1.25) node (prev3) {};
+                        
+                        \foreach \c in {10, 3, -3, -10}{
+                            \draw (prev3) --++ (\c:1) node (prev4) {};
+                        }
+                    }
+                }
+            }
+        }
+        \draw [->] (prev0) |-++ (-0.5, -0.5) node [anchor=east] {Transmissão};
+        \draw [->] (prev1) |-++ (-0.5, -0.5) node [anchor=east] {AC};
+        \draw [->] (prev2) |-++ (-0.5, -0.5) node [anchor=east] {GPS};
+        \draw [->] (prev3) |-++ (-0.5, -0.5) node [anchor=east] {Áudio};
+        \draw [->] (prev4) --++ (0, -0.5) node [anchor=north] {Cores};
+    \end{tikzpicture}
+\end{center}
+
+\item [c)]
+Como a presença e ausência de GPS são igualmente prováveis, em média metade dos carros medidos terão GPS, ou 50\%.
+
+\item [d)]
+Como as opções são independentes, a probabilidade continua de 50\% como no item (c).
+\end{itemize}
+
+
+\end{document}
+

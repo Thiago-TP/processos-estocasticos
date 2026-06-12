@@ -1,0 +1,118 @@
+\section{Questão 12}
+Uma fonte de informação gera símbolos aleatoriamente a partir de um alfabeto de quatro letras,
+$\{a, b, c, d\}$,
+com probabilidades 
+$P(a) = 1/2$, 
+$P(b) = 1/4$, 
+$P(c) = 1/8$, 
+$P(d) = 1/8$.
+%
+Suponha que as gerações de símbolos sejam independentes. 
+Um esquema de codificação escreve esses símbolos em códigos binários da seguinte maneira:
+%
+\begin{table}[htbp!]
+    \centering
+    \begin{tabular}{c| cccc}
+    \toprule
+        Símbolo & $a$ & $b$ & $c$ & $d$ \\
+    \midrule
+        Código & 0 & 10 & 110 & 111 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+Seja $X$ a variável randômica denotando o comprimento do código em bits, ou seja, o número de bits da palavra digital.
+
+\begin{multicols}{2}
+\begin{itemize}
+    \item [a)] Qual a faixa dinâmica de $X$?
+    \item [b)] Encontre a probabilidade $P(X = 1)$,
+    \item [c)] Determine $P(X = 2)$,
+    \item [d)] Determine $P(X = 3)$.
+    \item [e)] Encontre $P(X > 3)$.
+    \item [f)] Especifique o tipo de $X$ e esboce a CDF.
+    \item [g)] A partir da CDF, determine $P(X \leq 1)$,
+    \item [h)] Análogo para $P(l < X \leq 2)$,
+    \item [i)] Análogo para $P(l \leq X \leq 2)$, 
+\end{itemize}
+\end{multicols}
+
+\respostas
+
+\begin{itemize}
+    \item [a)]
+    Pela tabela, $X\in \{1, 2, 3\}$.
+    
+    \item [b)] 
+    Como apenas a letra $a$ tem código com $X=1$ e $P(a)=1/2$, 
+    segue que $P(X=1) = 1/2$,
+    
+    \item [c)]
+    Como apenas a letra $b$ tem código com $X=2$ e $P(b)=1/4$, 
+    segue que $P(X=2) = 1/4$,
+    
+    \item [d)] 
+    Tanto a letra $c$ quanto $d$ satisfazem $X=3$. 
+    Visto que a geração de símbolos é independente, podemos somar as probabilidades
+    das letras serem geradas para obter $P(X=3) = P(c) + P(d) = 1/4$.
+    
+    \item [e)] 
+    $X>3$ está fora da faixa dinâmica da variável randômica e portanto $P(X>3)=0$.
+    
+    \item [f)]
+    Como $X$ é uma variável randômica discreta, a CDF é a soma cumulativa da PMF.
+    Abaixo, são esboçados os gráficos das distribuições e a definição análitica de $F_X(x)$.
+    
+    \begin{minipage}{.32\linewidth}
+        \centering 
+        \begin{tikzpicture}[> = latex, scale=1.0]
+            \draw [->] (-0.5, 0) -- (3.5, 0) node [right] {$x$};
+            \draw [->] (0, 0) -- (0, 1.5) node [above] {$f_X(x)$};
+            \draw 
+                (1, 0) node [below] {$1$} -- (1, 0.5)
+                (2, 0) node [below] {$2$} -- (2, 0.25)
+                (3, 0) node [below] {$3$} -- (3, 0.25)
+            ;
+            \fill [azulunb]
+                (0, 0) node [below, black] {$0$} circle (0.07)
+                (1, 0.5) circle (0.07) node [above] {$1/2$}
+                (2, 0.25) circle (0.07) node [above] {$1/4$}
+                (3, 0.25) circle (0.07) node [above] {$1/4$}
+            ;
+        \end{tikzpicture}
+    \end{minipage}
+    %
+    \begin{minipage}{.32\linewidth}
+        \centering 
+        \begin{tikzpicture}[> = latex, scale=1.0]
+            \draw [->] (-0.5, 0) -- (3.5, 0) node [right] {$x$};
+            \draw [->] (0, 0) -- (0, 1.5) node [above] {$F_X(x)$};
+            \draw 
+                (1, 0) node [below] {$1$} -- (1, 0.5)
+                (2, 0) node [below] {$2$} -- (2, 0.75)
+                (3, 0) node [below] {$3$} -- (3, 1)
+            ;
+            \fill [azulunb]
+                (0, 0) node [below, black] {$0$} circle (0.07)
+                (1, 0.5) circle (0.07) node [above] {$1/2$}
+                (2, 0.75) circle (0.07) node [above] {$3/4$}
+                (3, 1) circle (0.07) node [above] {$1$}
+            ;
+        \end{tikzpicture}
+    \end{minipage}
+    %
+    \begin{minipage}{.32\linewidth}
+        \begin{align}
+            F_X(x) = (1/2)\ &\delta[t-1] + \nonumber\\
+                     (3/4)\ &\delta[t-2] + \nonumber\\ 
+                     &\delta[t-3] 
+        \end{align}
+    \end{minipage}
+    
+    \item [g), h), i)] Tem-se
+    \begin{align}
+        P(X \leq 1) &= F_X(1) = 1/2 \\
+        P(1 < X \leq 2) &= F_X(2) - F_X(1) = 1/4 \\
+        P(1 \leq X \leq 2) &= F_X(2) - F_X(0) = 3/4
+    \end{align}
+\end{itemize}

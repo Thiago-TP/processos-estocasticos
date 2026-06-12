@@ -1,0 +1,23 @@
+\section{Questão 5}
+Construa PMF condicional $P_{X\mid Y}(x\mid y)$ de $X$ dado $Y$.
+
+\begin{respostas}
+
+De maneira geral, $P_{A\mid B}(a\mid b) = P(a,b) / P_B(b)$.
+Para encontrar $P_{X\mid Y}(x\mid y)$, basta dividir entradas de uma mesma coluna pela soma da respectiva coluna:
+%
+\begin{table}[htbp!]
+    \centering
+    \begin{tabular}{c ccccc}
+    $P_{X\mid Y}(x\mid y)$
+           & & \multicolumn{4}{c}{$Y$} \\
+        \multirow{6}{*}{\rotatebox{90}{$X$}} & &
+           0 & 1 & 2 & 3 \\
+    & 0 & $1/4$ & $1/10$ & $1/14$ & $1/4$ \\
+    & 1 & $1/4$ & $4/10$ & $4/14$ & $1/4$ \\
+    & 2 & $1/4$ & $4/10$ & $8/14$ & $1/4$ \\ 
+    & 3 & $1/4$ & $1/10$ & $1/14$ & $1/4$ 
+    \end{tabular}
+\end{table}
+
+\end{respostas}

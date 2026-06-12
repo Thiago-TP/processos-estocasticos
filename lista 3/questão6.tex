@@ -1,0 +1,39 @@
+\section{Questão 6}
+Considere a CDF de uma variável randômica contínua representada pela expressão matemática:
+%
+\begin{equation*}
+    F_X(x) = 
+    \begin{cases}
+        0,     & x < 0 \\
+        1 - e^{-x}, & 0 \leq x \leq 1 \\
+        1,     & x > 1
+    \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item [a)] Determine $P(X > \pi)$.
+    \item [b)] Determine $P(\frac{\pi}{4}< X < \frac{\pi}{3})$.
+    \item [c)] Encontre a PDF de $X$.
+\end{itemize}
+
+\respostas
+\begin{itemize}
+    \item [a)]
+    $P(X > \pi) = 1 - F_X(\pi) = 0$.
+    
+    \item [b)]
+    $P(\frac{\pi}{4}< X < \frac{\pi}{3}) 
+    = F_X(\frac{\pi}{3}) - F_X(\frac{\pi}{4})
+    = 1 - (1 - e^{-\pi/4})
+    = e^{-\pi/4}$.
+    
+    \item [c)]
+    \begin{equation}
+        f_X(x) = 
+        \begin{cases}
+            0,     & x < 0 \\
+            e^{-x} + e^{-1}\delta(x-1), & 0 \leq x \leq 1 \\
+            0,     & x > 1
+        \end{cases}
+    \end{equation}
+\end{itemize}

@@ -1,0 +1,63 @@
+\section{Questão 17}
+Sejam $\alpha>0$ e $\beta>0$ constantes.
+Considere variáveis randômicas conjuntas $(X, Y)$ de CDF
+\begin{equation}
+    F_{XY}(x, y) = 
+    \begin{cases}
+        (1 - e^{-\alpha x}) (1 - e^{-\beta y}), 
+        & x\geq 0, y\geq 0
+        \\
+        0 & x\leq 0 \vee y\leq 0
+    \end{cases}
+\end{equation}
+%
+\begin{multicols}{2}
+\begin{itemize}
+    \item [a)] Encontre as CDFs marginais de $X$ e $Y$.
+    \item [b)] Mostre que $X$ e $Y$ são variáveis randômicas independentes.
+    \item [c)] Encontre $P(X\leq 1, Y\leq 1)$
+    \item [d)] Encontre $P(X\leq 1, Y\leq 1)$
+    \item [e)] Encontre $P(Y>1)$
+\end{itemize}
+\end{multicols}
+
+\begin{respostas}
+\begin{itemize}
+    \item [a)] 
+    Pela definição da CDF marginal,
+    %
+    \begin{align}
+        F_X(x) &= F_{XY}(x, \infty) = 1 - e^{-\alpha x}, \\
+        F_Y(y) &= F_{XY}(\infty, y) = 1 - e^{-\beta y}.
+    \end{align}
+    
+    \item [b)] 
+    Basta notar que $F_{XY}(x,y) = F_X(x)F_Y(y)$.
+    De fato,
+    %
+    \begin{align}
+        F_{XY}(x,y) &= F_X(x)F_Y(y) \implies \\
+        \frac{\partial}{\partial x\partial y} F_{XY}(x,y)
+        &=
+        \frac{d}{dx} F_X(x)
+        \frac{d}{dy} F_Y(y) \implies \\
+        P_{XY}(x,y) &= P_X(x) P_Y(y).
+    \end{align}
+    
+    \item [c)] 
+    $P(X\leq 1, Y\leq 1) 
+    = F_{XY}(1, 1) 
+    = (1 - e^{-\alpha}) (1 - e^{-\beta})$.
+    
+    \item [d)] 
+    $P(X\leq 1)
+    = F_{X}(1)
+    = 1 - e^{-\alpha}$.
+    
+    \item [e)] 
+    $P(Y>1)
+    = 1 - F_Y(1)
+    = 1 - (1-e^{-\beta})
+    = e^{-\beta}$.
+\end{itemize}
+\end{respostas}

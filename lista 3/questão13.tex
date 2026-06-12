@@ -1,0 +1,151 @@
+\section{Questão 13}
+
+Suponha que temos uma moeda que não é viciada ($P(H) = P(T) = 0.5$).
+Vamos criar um experimento randômico, denotando a variável $X$ como o número de caras ($H$) 
+em seis lançamentos de moeda. \\
+
+\textbf{\sffamily \color{vermelhoescuro} Observação:} note que este é um processo de Bernoulli.
+
+\begin{multicols}{2}
+\begin{itemize}
+    \item [a)] Determine a faixa dinâmica de $X$.
+    \item [b)] Esboce a PMF $f_X(x)$.
+    \item [c)] Esboce a CDF $F_X(x)$.
+    \item [d)] Encontre $P(x \geq 6)$.
+    \item [e)] Encontre $P(x \leq 2)$.
+    \item [f)] Encontre $P(1 \leq x \leq 5)$.
+    \item [g)] Calcule $\E{X}$.
+    \item [h)] Calcule $\E{X^2}$ (use LOTUS).
+    \item [i)] Com os resultados de (g) e (h), calcule $\sigma_X^2$.
+\end{itemize}
+\end{multicols}
+
+\respostas
+
+\begin{itemize}
+    \item [a)] 
+    A quantidade de caras pode ter sido qualquer valor inteiro entre $0$ e $6$,
+    logo a faixa dinâmica é $\{0, 1, 2, 3, 4, 5, 6\}$.
+    
+    \item [b), c)] 
+    Os esboços da PMF e CDF de $X\sim\mathrm{B}(6, P(H))$ são apresentados abaixo.
+    
+    \begin{minipage}{.48\linewidth}
+        \centering 
+        \begin{tikzpicture}[> = latex, scale=1.0]
+            \def\xStretch{0.95}
+            \def\yStretch{1}
+            \draw [->] (-\xStretch*0.5, 0) -- (\xStretch*6.5, 0) node [right] {$x$};
+            \draw [->] (0, 0) -- (0, 1.5) node [above] {$f_X(x)$};
+            % f_X(x) = (n k) p^k (1-p)^(n-k)
+            %        = 6! / (k!(6-k)!) 0.5^6
+            \draw 
+                (\xStretch*0, 0) node [below] {$0$} --++ (0, \yStretch*0.015625) node (p0) {}
+                (\xStretch*1, 0) node [below] {$1$} --++ (0, \yStretch*0.09375) node (p1) {}
+                (\xStretch*2, 0) node [below] {$2$} --++ (0, \yStretch*0.234375) node (p2) {}
+                (\xStretch*3, 0) node [below] {$3$} --++ (0, \yStretch*0.3125) node (p3) {}
+                (\xStretch*4, 0) node [below] {$4$} --++ (0, \yStretch*0.234375) node (p4) {}
+                (\xStretch*5, 0) node [below] {$5$} --++ (0, \yStretch*0.09375) node (p5) {}
+                (\xStretch*6, 0) node [below] {$6$} --++ (0, \yStretch*0.015625) node (p6) {}
+            ;
+            \fill [azulunb]
+                (p0) circle (0.07) node [above right] {$\frac{1}{64}$}
+                (p1) circle (0.07) node [above] {$\frac{6}{64}$}
+                (p2) circle (0.07) node [above] {$\frac{15}{64}$}
+                (p3) circle (0.07) node [above] {$\frac{20}{64}$}
+                (p4) circle (0.07) node [above] {$\frac{15}{64}$}
+                (p5) circle (0.07) node [above] {$\frac{6}{64}$}
+                (p6) circle (0.07) node [above] {$\frac{1}{64}$}
+            ;
+            \draw (3, 1.5) node {\scriptsize
+                $\binom{n}{x}P(X)^x (1-P(H))^{n-x} = 
+                \dfrac{6!}{x!(6-x)!} \dfrac{1}{64}$
+            };
+        \end{tikzpicture}
+    \end{minipage}
+    %
+    \begin{minipage}{.48\linewidth}
+        \centering 
+        \begin{tikzpicture}[> = latex, scale=1.0]
+            \def\xStretch{0.95}
+            \def\yStretch{1}
+            \draw [->] (-\xStretch*0.5, 0) -- (\xStretch*6.5, 0) node [right] {$x$};
+            \draw [->] (0, 0) -- (0, 1.5) node [above] {$F_X(x)$};
+            \draw 
+                (\xStretch*0, 0) node [below] {$0$} --++ (0, \yStretch*0.015625) node (p0) {}
+                (\xStretch*1, 0) node [below] {$1$} --++ (0, \yStretch*0.109375) node (p1) {}
+                (\xStretch*2, 0) node [below] {$2$} --++ (0, \yStretch*0.34375) node (p2) {}
+                (\xStretch*3, 0) node [below] {$3$} --++ (0, \yStretch*0.65625) node (p3) {}
+                (\xStretch*4, 0) node [below] {$4$} --++ (0, \yStretch*0.890625) node (p4) {}
+                (\xStretch*5, 0) node [below] {$5$} --++ (0, \yStretch*0.984375) node (p5) {}
+                (\xStretch*6, 0) node [below] {$6$} --++ (0, \yStretch*1) node (p6) {}
+            ;
+            \fill [azulunb]
+                (p0) circle (0.07) node [above right] {$\frac{1}{64}$}
+                (p1) circle (0.07) node [above] {$\frac{7}{64}$}
+                (p2) circle (0.07) node [above] {$\frac{22}{64}$}
+                (p3) circle (0.07) node [above] {$\frac{42}{64}$}
+                (p4) circle (0.07) node [above] {$\frac{57}{64}$}
+                (p5) circle (0.07) node [above] {$\frac{63}{64}$}
+                (p6) circle (0.07) node [above] {$\frac{64}{64}$}
+            ;
+        \end{tikzpicture}
+    \end{minipage}
+    
+    \item [d), e), f)] 
+    Pelo esboço da CDF, tem-se
+    %
+    \begin{align}
+        P(x \geq 6) &= 1 - F_X(5) = \frac{1}{64} \\
+        P(x \leq 2) &= F_X(2) = \frac{22}{64} \\
+        P(1 \leq x \leq 5) &= F_X(5) - F_X(0) = \frac{62}{64}
+    \end{align}
+    
+    \item [g)] 
+    Espera-se que $\E{X}=3$ uma vez que a PMF é simétrica ao eixo $X=3$.
+    O cálculo da expectância pela definição discreta confirma a suspeita:
+    \begin{align}
+        \E{X} 
+        &= \sum_{S_X} x f_X(x) \\
+        &= 
+        0\cdot \frac{1}{64} +
+        1\cdot \frac{6}{64} +
+        2\cdot \frac{15}{64} +
+        3\cdot \frac{20}{64} +
+        4\cdot \frac{15}{64} +
+        5\cdot \frac{6}{64} +
+        6\cdot \frac{1}{64}
+        =
+        \frac{192}{64}
+        =
+        3.
+    \end{align}
+    
+    \item [h)] 
+    No caso discreto, a expectância de $Y=g(X)$ se torna, por LOTUS,
+    %
+    \begin{equation}
+        \E{Y} = \E{g(X)} = \sum_{S_X} g(x) f_X(x).
+    \end{equation}
+    % 
+    Especificando $g(x) = x^2$, obtém-se $\E{X^2}$:
+    %
+    \begin{align}
+        \E{X^2} 
+        &= \sum_{S_X} x^2 f_X(x) \\
+        &= 
+        0\cdot \frac{1}{64} +
+        1\cdot \frac{6}{64} +
+        4\cdot \frac{15}{64} +
+        9\cdot \frac{20}{64} +
+        16\cdot \frac{15}{64} +
+        25\cdot \frac{6}{64} +
+        36\cdot \frac{1}{64}
+        =
+        \frac{672}{64}
+        =
+        10.5.
+    \end{align}
+    
+    \item [i)] $\sigma_X^2 = \E{X^2} - \E{X}^2 = 10.5 - 9 = 1.5$.
+\end{itemize}

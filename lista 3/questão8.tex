@@ -1,0 +1,86 @@
+\section{Questão 8}
+Seja $X$ uma variável aleatória contínua com a PDF abaixo, onde $\alpha$ é uma constante.
+%
+\begin{equation*}
+    f_X(x) = 
+    \begin{cases}
+        0,             & x < 0 \\
+        \alpha\pi x^2, & 0 \leq x \leq 1 \\
+        0,             & x > 1
+    \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item [a)] O valor de $\alpha$.
+    \item [b)] Determine a CDF para a variável randômica.
+    \item [c)] Determine $P(1.0 < x < 2.0)$.
+    \item [d)] Determine $P(0.6 < x < 0.9)$.
+    \item [e)] Determine $P((x \leq 0.5) \cup (x > 0.8))$.
+    \item [f)] Calcule $\mu_X$.
+\end{itemize}
+
+\respostas
+
+\begin{itemize}
+    \item [a)] Pelos axiomas da probabilidade,
+    \begin{equation}
+        \int_\mathbb{R} f_X(x) \ dx = 1 \iff 
+        \int_0^1 \alpha\pi x^2 \ dx = 1 \iff 
+        %\alpha\pi \int_0^1 x^2 \ dx = 1 \iff 
+        \alpha\pi \frac{x^3}{3}\bigg|_0^1 = 1 \iff 
+        \alpha = \frac{3}{\pi}.
+    \end{equation}
+    
+    \item [b)] Integrando a PDF,
+    \begin{equation}
+        F_X(x) = 
+        \begin{cases}
+            0,   & x < 0 \\
+            x^3, & 0 \leq x \leq 1 \\
+            1,   & x > 1
+        \end{cases}
+    \end{equation}
+
+    \item [c), d), e)]
+    Obtida a CDF do item (b), encontrar as probabilidades é direto.
+    Denotando os intervalos de interesse por 
+    $I_c = (1, 2)$, 
+    $I_d = (0.6, 0.9)$ e 
+    $I_e = (-\infty, 0.5] \cup (0.8, +\infty)$, tem-se
+    
+    \begin{minipage}{.28\textwidth}
+        \begin{align*}
+            P(I_1) 
+            &= F(2) - F(1) \\
+            &= 1^3 - 1^3 \\
+            &= 0
+        \end{align*}
+    \end{minipage}
+    %
+    \begin{minipage}{.32\textwidth}
+        \begin{align*}
+            P(I_2) 
+            &= F(0.9) - F(0.6) \\
+            &= 0.9^3 - 0.6^3 \\
+            &= 0.513
+        \end{align*}
+    \end{minipage}
+    %
+    \begin{minipage}{.36\textwidth}
+        \begin{align*}
+            P(I_3) 
+            &= F(0.5) + 1-F(0.8) \\
+            &= 0.5^3 + 1 - 0.8^3 \\
+            &= 0.613
+        \end{align*}
+    \end{minipage}
+    
+    \item [f)] Por definição,
+    \begin{equation}
+        \mu_X = \E{X} 
+        = \int_\mathbb{R} x f_X(x) \ dx
+        = 3\int_\mathbb{R} x^3 \ dx
+        = 3 \frac{x^4}{4}\bigg|_0^1
+        = \frac{3}{4}.
+    \end{equation}
+\end{itemize}

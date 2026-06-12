@@ -1,0 +1,35 @@
+\section{Questão 13}
+
+Encontre a variância condicional de $X$ dado $Y$ e expresse essa variância condicional $\Var{X\mid Y=y}$
+como uma variável randômica cujo valor é igual a 
+$h(y) = \Var{X\mid Y = y}$ quando $Y = y$.
+
+\begin{respostas}
+    Por definição, 
+    %
+    \begin{align}
+        \Var{X\mid Y=y} 
+        &= \E{X^2\mid Y=y} - \E{X\mid Y=y}^2 \\
+        &= \sum_{S_X} x^2 P_{X\mid Y}(x, y) - g(y)^2
+    \end{align}
+    %
+    logo
+    %
+    \begin{align}
+        \Var{X\mid Y=0} 
+        &= 0\cdot\frac{1}{4} + 1\cdot\frac{1}{4} + 4\cdot\frac{1}{4} + 9\cdot\frac{1}{4} - \left(\frac{3}{2}\right)^2
+        = \frac{5}{4},
+        \\
+        \Var{X\mid Y=1}
+        &= 0\cdot\frac{1}{10} + 1\cdot\frac{4}{10} + 4\cdot\frac{4}{10} + 9\cdot\frac{1}{10} - \left(\frac{3}{2}\right)^2
+        = \frac{13}{20},
+        \\
+        \Var{X\mid Y=2}
+        &= 0\cdot\frac{1}{14} + 1\cdot\frac{4}{14} + 4\cdot\frac{8}{14} + 9\cdot\frac{1}{14} - \left(\frac{23}{14}\right)^2
+        = \frac{101}{196},
+        \\
+        \Var{X\mid Y=3}
+        &= 0\cdot\frac{1}{4} + 1\cdot\frac{1}{4} + 4\cdot\frac{1}{4} + 9\cdot\frac{1}{4} - \left(\frac{3}{2}\right)^2
+        = \frac{5}{4}.
+    \end{align}
+\end{respostas}

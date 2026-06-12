@@ -1,0 +1,100 @@
+\section{Questão 10}
+
+Considere agora o experimento randômico conjunto cujas variáveis X e Y são equiprováveis e as saídas de ambas, $X$ e $Y$, podem assumir os valores $\{0,1,2,3\}$.
+
+\begin{multicols}{2}
+\begin{itemize}
+    \item [a)] Construa a PMF conjunta que represente o experimento realizado.
+    \item [b)] Determine a CDF conjunta.
+    \item [c)] Encontre a PMF marginal $P_X(x)$ e $P_Y(y)$
+    \item [d)] Encontre a CDF marginal $F_X(x)$ e $F_Y(y)$
+    \item [e)] Verifique se X e Y são independentes.
+\end{itemize}
+\end{multicols}
+
+\begin{respostas}
+% O procedimento para obter as respostas são análogos aos já apresentados nas questões 1 a 8.
+\begin{itemize}
+    \item [a), b)] 
+    % Construa a PMF conjunta que represente o experimento realizado.
+    \begin{minipage}{.48\linewidth}
+        \centering
+        \begin{tabular}{c ccccc}
+        $P_{XY}$
+               & & \multicolumn{4}{c}{$Y$} \\
+            \multirow{6}{*}{\rotatebox{90}{$X$}} & &
+               0 & 1 & 2 & 3 \\
+        & 0 & $1/16$ & $1/16$ & $1/16$ & $1/16$ \\
+        & 1 & $1/16$ & $1/16$ & $1/16$ & $1/16$ \\
+        & 2 & $1/16$ & $1/16$ & $1/16$ & $1/16$ \\ 
+        & 3 & $1/16$ & $1/16$ & $1/16$ & $1/16$ 
+        \end{tabular}
+    \end{minipage}
+    % Determine a CDF conjunta.
+    \begin{minipage}{.48\linewidth}
+        \centering
+        \begin{tabular}{c ccccc}
+        $F_{XY}$
+               & & \multicolumn{4}{c}{$Y$} \\
+            \multirow{6}{*}{\rotatebox{90}{$X$}} & &
+               0 & 1 & 2 & 3 \\
+        & 0 & $1/16$ & $2/16$ & $3/16$ & $4/16$ \\
+        & 1 & $2/16$ & $4/16$ & $6/16$ & $8/16$ \\
+        & 2 & $3/16$ & $6/16$ & $9/16$ & $12/16$ \\ 
+        & 3 & $4/16$ & $8/16$ & $12/16$ & $16/16$ 
+        \end{tabular}
+    \end{minipage}
+    
+    \item [c)] 
+    % Encontre a PMF marginal $P_X(x)$ e $P_Y(y)$
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \begin{tabular}{c cccc}
+        \toprule
+            $x$ & 0 & 1 & 2 & 3 \\
+        \midrule
+            $P_X(x)$ & $1/4$ & $1/4$ & $1/4$ & $1/4$ \\
+        \bottomrule
+        \end{tabular}
+    \end{minipage}
+    %
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \begin{tabular}{c cccc}
+        \toprule
+            $y$ & 0 & 1 & 2 & 3 \\
+        \midrule
+            $P_Y(y)$ & $1/4$ & $1/4$ & $1/4$ & $1/4$ \\
+        \bottomrule
+        \end{tabular}
+    \end{minipage}
+    
+    \item [d)] 
+    % Encontre a CDF marginal $F_X(x)$ e $F_Y(y)$
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \begin{tabular}{c cccc}
+        \toprule
+            $x$ & 0 & 1 & 2 & 3 \\
+        \midrule
+            $F_X(x)$ & $1/4$ & $2/4$ & $3/4$ & $4/4$ \\
+        \bottomrule
+        \end{tabular}
+    \end{minipage}
+    %
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \begin{tabular}{c cccc}
+        \toprule
+            $y$ & 0 & 1 & 2 & 3 \\
+        \midrule
+            $F_Y(y)$ & $1/4$ & $2/4$ & $3/4$ & $4/4$ \\
+        \bottomrule
+        \end{tabular}
+    \end{minipage}
+    
+    \item [e)] 
+    % Verifique se X e Y são independentes.
+    $P_X(x)P_Y(y) = 1/16 = P_{XY}(x,y)$, logo $X$ e $Y$ são independentes.
+\end{itemize}
+\end{respostas}

@@ -1,0 +1,93 @@
+\section{Questão 15}
+
+Considerando a condições de contorno apresentadas no experimento randômico descrito na questão 10:
+
+% \begin{multicols}{2}
+\begin{itemize}
+    \item [a)] 
+    calcule a expectância condicional $\E{X\mid Y = y}$;
+    
+    \item [b)] 
+    calcule a expectância condicional $\E{Y\mid X = x}$;
+    
+    \item [c)]
+    Expresse as expectâncias condicionais calculadas em a) e b), $\E{X\mid Y}$ e $\E{Y\mid X}$, respectivamente, como variáveis randômicas cujo valores são representados por 
+    $g(y) = \E{X\mid Y = y}$ quando $Y = y$ e 
+    $g(x) = \E{Y\mid X = x}$ quando $X = x$;
+    
+    \item [d)]
+    calcule a variância condicional $\Var{X\mid Y=y}$;
+    
+    \item [e)]
+    calcule a variância condicional $\Var{Y\mid X=x}$;
+    
+    \item [f)]
+    expresse as variâncias condicionais $\Var{X\mid Y=y}$ e $\Var{Y\mid X=x}$ como variáveis randômicas.
+\end{itemize}
+% \end{multicols}
+
+\begin{respostas}
+    % O procedimento para obter as respostas são análogos aos já apresentados nas questões 11 a 14.
+    
+    \begin{itemize}
+        \item [a), b)] 
+        % calcule a expectância condicional $\E{X\mid Y = y}$;
+        % calcule a expectância condicional $\E{Y\mid X = x}$;
+        \begin{minipage}{0.48\linewidth}
+            \centering
+            \begin{tabular}{c cccc}
+            \toprule
+                $y$ & 0 & 1 & 2 & 3 \\
+            \midrule
+                $\E{X\mid Y}$ & $6/4$ & $6/4$ & $6/4$ & $6/4$ \\
+            \bottomrule
+            \end{tabular}
+        \end{minipage}
+        %
+        \begin{minipage}{0.48\linewidth}
+            \centering
+            \begin{tabular}{c cccc}
+            \toprule
+                $x$ & 0 & 1 & 2 & 3 \\
+            \midrule
+                $\E{Y\mid X}$ & $6/4$ & $6/4$ & $6/4$ & $6/4$ \\
+            \bottomrule
+            \end{tabular}
+        \end{minipage}
+        
+        \item [c)]
+        $g(z) = 3/2$ se $z\in\{0, 1, 2, 3\}$ e $g(z)=0$ caso contrário.
+        
+        \item [d), e)]
+        % calcule a variância condicional $\Var{X\mid Y=y}$.
+        % calcule a variância condicional $\Var{Y\mid X=x}$.
+        % calcule a expectância condicional $\E{X\mid Y = y}$;
+        % calcule a expectância condicional $\E{Y\mid X = x}$;
+        \begin{minipage}{0.48\linewidth}
+            \centering
+            \begin{tabular}{c cccc}
+            \toprule
+                $y$ & 0 & 1 & 2 & 3 \\
+            \midrule
+                $\Var{X\mid Y}$ & $5/4$ & $5/4$ & $5/4$ & $5/4$ \\
+            \bottomrule
+            \end{tabular}
+        \end{minipage}
+        %
+        \begin{minipage}{0.48\linewidth}
+            \centering
+            \begin{tabular}{c cccc}
+            \toprule
+                $x$ & 0 & 1 & 2 & 3 \\
+            \midrule
+                $\Var{Y\mid X}$ & $5/4$ & $5/4$ & $5/4$ & $5/4$ \\
+            \bottomrule
+            \end{tabular}
+        \end{minipage}
+        
+        \item [f)]
+        % Expresse as variâncias condicionais $\Var{X\mid Y=y}$ e $\Var{Y\mid X=x}$ como variáveis randômicas.
+        $h(z) = 5/4$ se $z\in\{0, 1, 2, 3\}$ e $h(z)=0$ caso contrário.
+    \end{itemize}
+
+\end{respostas}

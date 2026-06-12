@@ -1,0 +1,53 @@
+\section{Questão 10}
+Considere a variável randômica contínua 
+$X = A\cos(2\pi f_c + \Theta) + 1$, 
+onde a amplitude $A > 0.5$ e a frequência $f_c$ são ambas constantes não aleatórias, 
+e a fase inicial $\Theta$ é uma variável aleatória contínua cuja
+PDF é a seguinte:
+%
+\begin{equation*}
+    f_\Theta(\theta) = 
+    \begin{cases}
+        0,              & \theta < 0 \\
+        \frac{1}{2\pi}, & 0 \leq \theta \leq 2\pi \\
+        0,              & \theta > 2\pi
+    \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item [a)] Encontre a expectância da variável $X$ (use LOTUS).
+    \item [b)] Calcule $\E{X^2}$.
+    \item [c)] Com os resultados de (a) e de (b), encontre a variância da variável aleatória contínua $X$.
+\end{itemize}
+
+\respostas
+
+\begin{itemize}
+    \item [a)] 
+    Como o cosseno é uma função periódica, espera-se que a expectância seja o nível DC do sinal, $\E{X}=1$. Aplicar LOTUS confirma essa suspeita:
+    %
+    \begin{align}
+        E[X=g(\Theta)] 
+        &= \int_\mathbb{R} g(\theta) f_\Theta(\theta) \ d\theta \\
+        &= \int_0^{2\pi} [A \cos(2\pi f_c + \theta) + 1] \frac{1}{2\pi} \ d\theta \\
+        &= \frac{1}{2\pi} \int_0^{2\pi} d\theta + 
+           \frac{A}{2\pi} \int_0^{2\pi} \cos(2\pi f_c + \theta) \\
+        &= 1 + 0 = 1.
+    \end{align}
+    
+    \item [b)] 
+    Procedendo de maneira similar à questão anterior, tem-se
+    %
+    \begin{align}
+        E[X^2] 
+        &= \int_\mathbb{R} g^2(\theta) f_\Theta(\theta) \ d\theta \\
+        &= \int_0^{2\pi} [A \cos(2\pi f_c + \theta) + 1]^2 \frac{1}{2\pi} \ d\theta \\
+        &= \int_0^{2\pi} [A^2 \cos^2(2\pi f_c + \theta) + 2\cos(2\pi f_c + \theta) + 1] \frac{1}{2\pi} \ d\theta \\
+        &= 1 + \frac{A^2}{2\pi} \int_0^{2\pi} \cos^2(2\pi f_c + \theta) \ d\theta \\
+        &= 1 + \frac{A^2}{2\pi} \int_0^{2\pi} \frac{1}{2} + \frac{1}{2}\cos^2(4\pi f_c + 2\theta) \ d\theta \\
+        &= 1 + \frac{A^2}{2}.
+    \end{align}
+    
+    \item [c)] 
+    $\Var{X} = \E{X^2} - \E{X}^2 = A^2/2$.
+\end{itemize}

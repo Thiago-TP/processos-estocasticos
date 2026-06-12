@@ -1,0 +1,72 @@
+\section{Questão 4}
+Seja $X$ uma variável aleatória com PDF dada por
+%
+\begin{equation*}
+    f_X(x) = 
+    \begin{cases}
+        0,     & x < 0 \\
+        5 x^4, & 0 \leq x \leq 1 \\
+        0,     & x > 1
+    \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item [a)] 
+    Determine $P(X > 1/2)$.
+    
+    \item [b)] 
+    Determine a CDF de $X$.
+    
+    \item [c)] 
+    Determine $\E{X}$.
+    
+    \item [d)] 
+    Determine $\Var{X}$.
+\end{itemize}
+
+\respostas
+\begin{itemize}
+    \item [a), b)]
+    Tendo a PDF, a CDF é obtida por integração:
+    %
+    \begin{equation}
+        F_X(x) = 
+        \int_{-\infty}^x p(z) \ dz =
+        \begin{cases}
+            0,     & x < 0 \\
+            x^5,   & 0 \leq x \leq 1 \\ 
+            1,     & x > 1
+        \end{cases}
+    \end{equation}
+    %
+    Com a CDF em mãos, o cálculo de probabilidades é direto:
+    %
+    \begin{equation}
+        P(X > 1/2) 
+        = P(X < 1) - P(X < 1/2) 
+        = F_X(1) - F_X(1/2)
+        = 1 - \frac{1}{32}
+        = \frac{31}{32}.
+    \end{equation}
+    
+    \item [c)]
+    \begin{equation}
+        \E{X} 
+        = \int_\mathbb{R} x f_X(x) \ dx
+        = \int_0^1 x \cdot (5x^4) \ dx 
+        = 5 \int_0^1 x^5 \ dx 
+        = 5 \frac{x^6}{6}\bigg|_0^1 
+        = \frac56.
+    \end{equation}
+    
+    \item [d)]
+    \begin{align}
+        \Var{X} 
+        = \E{X^2} - \E{X}^2 
+        &= \int_\mathbb{R} x^2 f_X(x) \ dx - \frac{25}{36} \\
+        &= 5 \int_0^1 x^6 \ dx - \frac{25}{36} \\
+        &= 5 \frac{x^7}{7}\bigg|_0^1 - \frac{25}{36} \\
+        &= \frac{5}{7} - \frac{25}{36} \\
+        &= \frac{5}{252}.
+    \end{align}
+\end{itemize}

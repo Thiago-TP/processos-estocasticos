@@ -1,0 +1,47 @@
+\section{Questão 11}
+
+Considere novamente os resultados do experimento randômico mostrado na tabela. Calcule as expectâncias condicionais:
+% \begin{multicols}{2}
+\begin{itemize}
+    \item [a)] $\E{X\mid Y=y}$
+    \item [b)] $\E{Y\mid X=x}$
+\end{itemize}
+% \end{multicols}
+
+\begin{respostas}
+\begin{itemize}
+    \item [a)] 
+    Por definição, 
+    $\E{X\mid Y=y} = \sum_{S_X} x P_{X\mid Y}(x, y)$.
+    Logo,
+    %
+    \begin{align}
+        \E{X\mid Y=0} 
+        &= 0\cdot\frac{1}{4} + 1\cdot\frac{1}{4} + 2\cdot\frac{1}{4} + 3\cdot\frac{1}{4} 
+        = \frac{6}{4},
+        \\
+        \E{X\mid Y=1}
+        &= 0\cdot\frac{1}{10} + 1\cdot\frac{4}{10} + 2\cdot\frac{4}{10} + 3\cdot\frac{1}{10} 
+        = \frac{15}{10},
+        \\
+        \E{X\mid Y=2}
+        &= 0\cdot\frac{1}{14} + 1\cdot\frac{4}{14} + 2\cdot\frac{8}{14} + 3\cdot\frac{1}{14} 
+        = \frac{23}{14},
+        \\
+        \E{X\mid Y=3}
+        &= 0\cdot\frac{1}{4} + 1\cdot\frac{1}{4} + 2\cdot\frac{1}{4} + 3\cdot\frac{1}{4} 
+        = \frac{6}{4}.
+    \end{align}
+    
+    \item [b)] 
+    Como $P_{Y\mid X}(x,y)$ é simétrica, $\E{X\mid Y=a} = \E{Y\mid X=a}$. 
+    Usando os resultados do item anterior, conclui-se que
+    %
+    \begin{equation}
+        \E{Y\mid X=0} = \frac{6}{4}, \quad 
+        \E{Y\mid X=1} = \frac{15}{10}, \quad
+        \E{Y\mid X=2} = \frac{23}{14}, \quad
+        \E{Y\mid X=3} = \frac{6}{4}.
+    \end{equation}
+\end{itemize}
+\end{respostas}

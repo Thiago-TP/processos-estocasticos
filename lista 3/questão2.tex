@@ -1,0 +1,170 @@
+\section{Questão 2}
+Considere o experimento de lançar um dardo em um alvo circular com raio unitário (1m). 
+Seja $X$ a variável randômica representando a distância do ponto em que o dardo acerta o alvo a partir do ponto central do alvo. 
+Suponha que o ponto onde o dardo sempre acerte o alvo prato seja igualmente provável sobre toda a área do alvo.
+%
+\begin{figure}[h!]
+    \centering
+    \caption{Ilustração do experimento. A circunferência azul exemplifica região equidistante.}
+    \begin{tikzpicture}[scale=1.75, > = latex]
+        \draw [->] (-1.2, 0) -- (1.2, 0) node [right] {$x$};
+        \draw [->] (0, -1.2) -- (0, 1.2) node [above] {$y$};
+        \draw (0, 0) circle (1);
+        \draw [azulunb, very thick] (0, 0) circle (0.65);
+        \draw [->] (0:0) -- (45:0.65) 
+            node [xshift=5pt, yshift=5pt] {\rotatebox{-45}{$X=d$}}
+            node [midway, xshift=-5pt, yshift=5pt] {\rotatebox{45}{$d$}};
+        
+        \fill (0, 0)  circle (0.04);
+        \fill (1, 0)  circle (0.04) node [below right] {$1$};
+        \fill (-1, 0) circle (0.04) node [below left] {$-1$};
+        \fill (0, 1)  circle (0.04) node [above left] {$1$};
+        \fill (0, -1) circle (0.04) node [below left] {$-1$};
+    \end{tikzpicture}
+\end{figure}
+
+\begin{multicols}{2}
+\begin{itemize}
+    \item [a)] 
+    Qual é a faixa dinâmica de $X$?
+    
+    \item [b)] 
+    Determine e esboce a CDF de $X$.
+    
+    \item [c)] 
+    Determine e esboce a PDF de $X$.
+    
+    \item [d)] 
+    Encontre $P (X < a)$.
+    
+    \item [e)] 
+    Encontre $P(a < X < b)$, onde $a < b < 1$.
+    
+    \item [f)] 
+    Encontre $P(0.1 < X < 0.9)$.
+    
+    \item [g)] 
+    Determine \E{X}.
+    
+    \item [h)] 
+    Determine \Var{X}.
+\end{itemize}
+\end{multicols}
+
+\respostas
+
+\begin{itemize}
+    \item [a)] 
+    Supondo distâncias sempre em metros, tem-se que $X$ está contido no intervalo fechado $[0, 1]$. 
+    
+    \item [b), c), d)] 
+    Como os pontos no prato são equiprováveis, a probabilidade do acerto estar a uma distância $\leq a$, 
+    $0 \leq a \leq 1$,
+    é dado pela divisão da área de um círculo de raio $a$ pela área do prato:
+    %
+    \begin{equation}
+        P(X \leq a) = 
+        P(X < a) = \frac{\pi a^2}{\pi 1^2} = a^2. 
+    \end{equation}
+    %
+    Obtido $P(X < a)$, a função densidade acumulada (CDF) é imediata:
+    
+    \begin{minipage}{.5\textwidth}
+        \begin{equation}
+            F_X(x) = 
+            \begin{cases}
+                0, & x < 0 \\
+                x^2, & 0 \leq x \leq 1 \\
+                1, & x > 1     
+            \end{cases}
+        \end{equation}
+    \end{minipage}
+    %
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \begin{tikzpicture}[> = latex]
+                    
+            \draw [dashed] 
+                (1, 1) -- (0, 1) node [left] {1}
+                (1, 1) -- (1, 0)
+            ;
+            
+            \draw [name path=zero] 
+                plot [domain=-0.5:1.5, variable=\x, samples=100] (\x, 0)
+            ;
+            \draw [very thick, azulunb, name path=cdf] 
+                (-0.5, 0) -- (0, 0)
+                plot [domain=0:1, variable=\x, samples=100] (\x, \x*\x)
+                (1, 1) -- (1.5, 1)
+            ;
+            \tikzfillbetween[of=cdf and zero, on layer=ft]{azulunb!20, opacity=0.5};
+            
+            \draw [->] (-.5, 0) -- (1.5, 0) node [right] {$x$};
+            \draw [->] (0, -.5) -- (0, 1.5) node [above] {$F_X(x)$};
+            \fill (0, 0) circle (0.05) node [below left] {$0$};
+            \fill (1, 0) circle (0.05) node [below] {$1$};
+        \end{tikzpicture}
+    \end{minipage}
+    
+    e obtida a CDF, a função densidade de probabilidade (PDF) é calculada por derivação:
+
+    \begin{minipage}{.5\textwidth}
+        \begin{equation}
+            f_X(x) = \frac{dF_X}{dx} = 
+            \begin{cases}
+                0, & x < 0 \\
+                2x, & 0 \leq x \leq 1 \\
+                0, & x > 1     
+            \end{cases}
+        \end{equation}
+    \end{minipage}
+    %
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \begin{tikzpicture}[> = latex]
+            \draw [->] (-.5, 0) -- (1.5, 0) node [right] {$x$};
+            \draw [->] (0, -.5) -- (0, 2.5) node [above] {$f_X(x)$};
+            \fill [azulunb!20, opacity=0.5] (0,0) -- (1, 2) -- (1, 0) -- cycle;
+            \fill (0, 0) circle (0.05) node [below left] {$0$};
+            \fill (1, 0) circle (0.05) node [below] {$1$};
+            \draw [dashed] (1, 2) -- (0, 2) node [left] {2};
+            \draw [very thick, azulunb]
+                (-0.5, 0) -- (0, 0) -- (1, 2)
+                (1, 0) -- (1.5, 0)
+            ;
+        \end{tikzpicture}
+    \end{minipage}
+    
+    \item [e)]
+    $P(a < X < b) = F_X(b) - F_X(a) = b^2 - a^2$.
+    
+    \item [f)] 
+    Substituindo $a=0.1$ e $b=0.9$ em (d), tem-se
+    $P(0.1 < X < 0.9) = 0.9^2 - 0.1^2 = 0.8$ ou 80\%.
+    
+    \item [g)] 
+    Como a PDF é conhecida analiticamente do item (c), pode-se usar a definição integral da expectância:
+    %
+    \begin{equation}
+        \E{X} 
+        = \int_\mathbb{R} x f_X(x) \ dx
+        = \int_0^1 x \cdot (2x) \ dx 
+        = 2 \int_0^1 x^2 \ dx 
+        = 2 \frac{x^3}{3}\bigg|_0^1 
+        = \frac23
+    \end{equation}
+    
+    \item [h)] 
+    Como a PDF é conhecida analiticamente do item (c), e a expectância, do item (g),
+    pode-se usar a definição integral da variância:
+    %
+    \begin{align}
+        \Var{X} 
+        &= \E{X^2} - \E{X}^2 \\
+        &= \int_\mathbb{R} x^2 f_X(x) \ dx - \frac49 \\
+        &= 2\int_0^1 x^3 \ dx - \frac49 \\
+        &= 2\frac14 x^4\bigg|_0^1 - \frac49 \\
+        &= \frac12 - \frac49 \\
+        &= \frac{1}{18}.
+    \end{align}
+\end{itemize}

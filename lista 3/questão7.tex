@@ -1,0 +1,59 @@
+\section{Questão 7}
+Discuta sobre o conjunto de valores possíveis para as constantes $a$ e $b$ de modo que
+%
+\begin{equation*}
+    F_X(x) = 
+    \begin{cases}
+        0,     & x \leq 0 \\
+        a - ae^{-x/b}, & x > 0
+    \end{cases}
+\end{equation*}
+%
+seja uma CDF válida.
+
+\respostas
+
+Para a CDF ser válida, é necessário que seja não-negativa, não-decrescente, e satisfaça
+$\lim_{x\to-\infty} F_X(x) = 0$, $\lim_{x\to+\infty} F_X(x) = 1$.
+O primeiro requisito impõe que tanto $a$ quanto $b$ sejam positivos.
+Essas imposições também garante que $F_X$ seja não-decrescente.
+Como o limite em $-\infty$ é trivial, resta garantir o limite em $+\infty$.
+Para $b>0$, $\lim_{x\to+\infty} F_X(x) = a$.
+Conclui-se então que $F_X$ é uma CDF válida se e somente se $a=1$ e $b>0$.
+Quanto maior $b$, mais lentamente $F_X(x)$ tende a $1$.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[> = latex, scale=1.5]
+        \draw [->] (-0.5, 0) -- (3.1, 0) node [right] {$x$};
+        \draw [->] (0, 0) -- (0, 1.3) node [above] {$F_X(x)$};
+
+        \draw [very thick, azulunb!5]
+            plot [domain=0:3, variable=\x, samples=100, smooth] 
+            ({\x}, {1 - e^(-0.5*\x)})
+        ;
+        \draw [very thick, azulunb!10]
+            plot [domain=0:3, variable=\x, samples=100, smooth] 
+            ({\x}, {1 - e^(-0.75*\x)})
+        ;
+        \draw [very thick, azulunb!40]
+            plot [domain=0:3, variable=\x, samples=100, smooth] 
+            ({\x}, {1 - e^(-\x)})
+        ;
+        \draw [very thick, azulunb!70]
+            plot [domain=0:3, variable=\x, samples=100, smooth] 
+            ({\x}, {1 - e^(-1.5*\x)})
+        ;
+        \draw [very thick, azulunb]
+            (-0.5, 0) -- (0, 0)
+            plot [domain=0:3, variable=\x, samples=100, smooth] 
+            ({\x}, {1 - e^(-2*\x)})
+        ;
+
+        \draw [dashed]
+            (0, 1) node [left] {$1$} -- (3, 1)
+        ;
+        \fill (0, 0) circle (.05) node [below] {$0$};
+        \draw [->, dashdotted] (.5, .8) --++ (-30:1) node [right] {$b$};
+    \end{tikzpicture}
+\end{figure}

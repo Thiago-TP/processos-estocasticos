@@ -1,0 +1,76 @@
+\section{Questão 3}
+Seja $X$ uma variável aleatória com PDF dada por
+%
+\begin{equation*}
+    f_X(x) = 
+    \begin{cases}
+        2 \ln(a) x^2, & |x| \leq 1 \\
+        0,            & |x| > 1
+    \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item [a)] 
+    Determine o valor da constante $a$.
+    
+    \item [b)] 
+    Qual é a faixa dinâmica da variável randômica $X$?
+    
+    \item [c)] 
+    Determine $\E{X}$.
+    
+    \item [d)] 
+    Determine $\Var{X}$.
+    
+    \item [e)] 
+    Determine $P(X > 0)$.
+\end{itemize}
+
+\respostas
+\begin{itemize}
+    \item [a)]
+    Modula-se $a$ para satisfazer $\int_\mathbb{R} f_X(x)\ dx = 1$ (axioma da probabilidade):
+    %
+    \begin{align}
+        \int_\mathbb{R} f_X(x) \ dx &= 1 \iff \\
+        \int_{-1}^1 2\ln(a) x^2 \ dx &= 1 \iff \\
+        2\ln(a) \int_{-1}^1 x^2 \ dx &= 1 \iff \\
+        2\ln(a) \frac{x^3}{3}\bigg|_{-1}^1 \ dx &= 1 \iff \\
+        \frac{4}{3} \ln(a) &= 1 \iff 
+        a = e^{3/4}.
+    \end{align}
+
+    O resultado acima permite reescrever a PDF como
+    %
+    \begin{equation}
+        f_X(x) = 
+        \begin{cases}
+            3x^2/2, & |x| \leq 1 \\
+            0,      & |x| > 1
+        \end{cases}
+    \end{equation}
+    
+    \item [b)]
+    A faixa dinâmica é a porção do domínio da PDF cuja imagem não é trivial: $[-1, 1]$.
+    
+    \item [c)]
+    Sendo a PDF simétrica, $\E{X}=0$.
+    
+    \item [d)]
+    Como $\E{X}=0$ pelo item (c), tem-se
+    %
+    \begin{equation}
+        \Var{X} 
+        = E[X^2]
+        = \int_\mathbb{R} x^2 f_X(x) \ dx
+        = \int_{-1}^1 x^2 \cdot \left(\frac{3}{2}x^2\right) \ dx
+        = \frac{3}{2} \int_{-1}^1 x^4 \ dx
+        = \frac{3}{2} \frac{x^5}{5}\bigg|_{-1}^1
+        = \frac{3}{5}
+    \end{equation}
+    
+    \item [e)]
+    De maneira geral, $P(X<0) = 1 - P(X>0)$.
+    Como a PDF em questão é simétrica, $P(X<0) = P(X>0)$, 
+    e portanto $P(X>0) = 1/2$ ou 50\%.
+\end{itemize}

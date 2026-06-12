@@ -1,0 +1,21 @@
+\section{Questão 14}
+
+Encontre a variância condicional de $Y$ dado $X$ e expresse essa variância condicional $\Var{Y\mid X=x}$
+como uma variável randômica cujo valor é igual a 
+$h(x) = \Var{Y\mid X = x}$ quando $X = x$.
+
+\begin{respostas}
+    Como as expectâncias condicionais são simétricas, 
+    $\Var{Y\mid X = z} = \Var{X\mid Y = z} = h(z)$.
+    Pelos resultados da questão anterior,
+    %
+    \begin{equation}
+        h(z) = 
+        \begin{cases}
+            5/4,     & z=0 \vee z=3 \\
+            13/20,   & z=1 \\ 
+            101/196, & z=2 \\ 
+            0,       & z<0 \vee z>2
+        \end{cases}
+    \end{equation}
+\end{respostas}

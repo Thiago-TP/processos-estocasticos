@@ -1,0 +1,22 @@
+\section{Questão 7}
+Construa PMF condicional $P_{Y\mid X}(y\mid x)$ de $Y$ dado $X$.
+
+\begin{respostas}
+
+Para encontrar $P_{Y\mid X}(y\mid x)$, basta dividir entradas de uma mesma linha da probabilidade conjunta pela soma da respectiva linha:
+%
+\begin{table}[htbp!]
+    \centering
+    \begin{tabular}{c ccccc}
+    $P_{Y\mid X}(y\mid x)$
+           & & \multicolumn{4}{c}{$Y$} \\
+        \multirow{6}{*}{\rotatebox{90}{$X$}} & &
+           0 & 1 & 2 & 3 \\
+    & 0 & $1/4$ & $1/4$ & $1/4$ & $1/4$ \\
+    & 1 & $1/10$ & $4/10$ & $4/10$ & $1/10$ \\
+    & 2 & $1/14$ & $4/14$ & $8/14$ & $1/14$ \\ 
+    & 3 & $1/4$ & $1/4$ & $1/4$ & $1/4$ 
+    \end{tabular}
+\end{table}
+
+\end{respostas}

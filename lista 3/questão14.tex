@@ -1,0 +1,74 @@
+\section{Questão 14}
+
+Considere o espaço amostral para a variável randômica discreta $X\sim U(1, 6)$ é 
+$S_X = \{1, 2, 3, 4, 5, 6\}$ e 
+$Y$ uma variável randômica obtida por meio de $Y = \cos\left(X\frac{\pi}{6}\right)$.
+
+\begin{multicols}{3}
+    \begin{itemize}
+        \item [a)] Determine $S_Y$.
+        \item [b)] Determine a PMF de $Y$. \columnbreak
+        \item [c)] Determine a CDF de $Y$.
+        \item [d)] Calcule $\E{Y}$.
+        \item [e)] Calcule $\sigma_Y^2$.
+    \end{itemize}
+\end{multicols}
+
+\respostas
+
+\begin{itemize}
+    \item [a)] 
+    Variando $X$ ao longo de sua faixa dinâmica, encontra-se
+    \begin{align}
+        Y(X=1) &= \frac{\sqrt{3}}{2}  & Y(X=2) &= \frac{1}{2}         & Y(X=3) &= 0 \\
+        Y(X=4) &= \frac{-1}{2}        & Y(X=5) &= \frac{-\sqrt{3}}{2} & Y(X=6) &= -1
+    \end{align}
+    %
+    logo, $S_Y = \{-1,\ -\sqrt{3}/2,\ -1/2,\ 0,\ 1/2,\ \sqrt{3}/2\}$.
+    
+    \item [b)] 
+    Como $X$ é uniforme, $Y$ também será uniforme: $f_Y(y) = 1/6$.
+    
+    \item [c)] 
+    Tomando a soma acumulada da PMF de $Y$, obtém-se
+    \begin{align}
+        F_Y(y) = 
+        \frac{1}{6} \delta\left[y + 1\right] + 
+        \frac{2}{6} \delta\left[y + \frac{\sqrt{3}}{2}\right] + 
+        \frac{3}{6} \delta\left[y + \frac{1}{2}\right] + 
+        \frac{4}{6} \delta[y] + 
+        \frac{5}{6} \delta\left[y - \frac{1}{2}\right] + 
+        \frac{6}{6} \delta\left[y - \frac{\sqrt{3}}{2}\right]
+    \end{align}
+    
+    \item [d)] 
+    Tem-se
+    \begin{align}
+        \E{Y} 
+        &= \sum_{S_y} y f_Y(y) \\
+        &= \frac{1}{6} \left(
+            -1 -\frac{\sqrt{3}}{2} -\frac{1}{2} +0 +\frac{1}{2} +\frac{\sqrt{3}}{2}
+        \right) 
+        = -\frac{1}{6}.
+    \end{align}
+    
+    \item [e)] 
+    Primeiro, calculando $\E{Y^2}$:
+    \begin{align}
+        \E{Y^2} 
+        &= \sum_{S_y} y^2 f_Y(y) \\
+        &= \frac{1}{6} \left(
+            1 +\frac{3}{4} +\frac{1}{4} +0 +\frac{1}{4} +\frac{3}{4}
+        \right) 
+        = \frac{1}{2}
+    \end{align}
+    %
+    e portanto
+    %
+    \begin{equation}
+        \sigma_Y^2 
+        = \E{Y^2} - \E{Y}^2 
+        = \frac{1}{2} + \frac{1}{6} 
+        = \frac{2}{3}.
+    \end{equation}
+\end{itemize}

@@ -1,0 +1,44 @@
+\section{Questão 9}
+Seja $X$ uma variável aleatória contínua com a PDF abaixo.
+%
+\begin{equation*}
+    f_X(x) = 
+    \begin{cases}
+        |x|,           & |x| \leq 1 \\
+        0,             & |x| > 1
+    \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item [a)] Calcule $F_X(x)$.
+    \item [b)] Calcule $\mu_X$.
+    \item [c)] Calcule $\E{Y}$ onde $Y = X^3 - X^2 - X + 1$.
+\end{itemize}
+
+\respostas
+
+\begin{itemize}
+    \item [a)] Integrando,
+    \begin{equation}
+        F_X(x) = 
+        \begin{cases}
+            0,         & x < 0 \\
+            (1 - x^2)/2,     & -1 \leq x < 0 \\
+            (1 + x^2)/2,       & 0 \leq x \leq 1 \\
+            1,         & x > 1
+        \end{cases}
+    \end{equation}
+    
+    \item [b)] Como a PDF é simétrica, $\mu_X = \E{X} = 0$.
+
+    \item [c)] Pela linearidade da expectância,
+    \begin{align}
+        \E{Y} 
+        &= \E{X^3} - \E{X^2} - \E{X} + \E{1} \\
+        &= \int_{-1}^1 x^3 |x| \ dx - \int_{-1}^1 x^2 |x| \ dx - \int_{-1}^1 x |x| \ dx + 1 \\
+        &= 0 - 2\int_0^1 x^3 \ dx - 0 + 1 \\
+        &= 1 - 2\frac{x^4}{4}\bigg|_0^1 \\
+        &= 1 - \frac{1}{2} \\
+        &= \frac{1}{2}.
+    \end{align}
+\end{itemize}

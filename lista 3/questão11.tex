@@ -1,0 +1,81 @@
+\section{Questão 11}
+Considere que uma variável randômica $X$ que diz respeito aos resultados de um
+determinado exame médico para um paciente que está ou
+não com determinada enfermidade.
+A tabela abaixo registra algumas amostras dos pares $(X=x_i, C_i)$, onde $C_i=1$ se o paciente possui a enfermidade e $C_i=0$ caso contrário. 
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c | ccc ccc ccc ccc}
+    \toprule
+        $x_i$   & 1.5 & 2.8 & 1.2 & 2.2 & 3.8 & 5.4 & 5.1 & 2.8 & 4.4 & 2.3 & 4.5 & 3.8 \\
+    \midrule
+        $C_i$ & 0   & 0   & 1   & 0   & 1   & 1   & 1   & 0   & 1   & 0   & 1   & 1 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+Considere que o conjunto de dados mensurados possam ser descritos por uma PDF Gaussiana. 
+Usando a Lei de Bayes determine a probabilidade dos resultados dos exames serem classificados como enfermo ou
+sadio: $X = 5.7$; $X = 3.0$; $X = 2.6$.
+
+\respostas
+
+O classificador atribui a uma amostra $x_i$ a classe $C_i$ que otimize a probabilidade condicional 
+$P(C_i | x_i)$. Pela Lei de Bayes, essa condicional (a distribuição \textit{a posteriori}) 
+é proporcional ao produto da \textit{priori} pela \textit{verossimilhança}:
+%
+\begin{equation}
+    P(C_i = k | x_i) 
+    = \frac{P(C_i = k) P(x_i | C_i)}{P(x_i)}
+    = \frac{P(C_i) P(x_i | C_i)}{\sum_k P(C_i=k)P(x_i | C_i=k)}
+    \propto P(C_i) P(x_i | C_i)
+\end{equation}
+%
+e portanto o classificador Bayesiano busca encontrar a classe que maximize $P(C_i) P(x_i | C_i)$.
+A probabilidade \textit{a priori} de cada classe (com ou sem enfermidade) pode ser estimada diretamente da tabela:
+%
+\begin{align}
+    P(C_i=0) &\approx \frac{N_0}{N_1 + N_0} = \frac{5}{12}, &
+    P(C_i=1) &\approx \frac{N_1}{N_1 + N_0} = \frac{7}{12},
+\end{align}
+%
+com 
+$N_0=5$ a quantidade de pacientes sem a enfermidade, e 
+$N_1=7$ a quantidade de pacientes com a enfermidade.
+O cálculo das verossimilhanças requer mais suposições;
+como é garantido que as classes vêm de PDFs Gaussianas, tem-se
+%
+\begin{equation}
+    P(x | C_i = k) = 
+    \frac{1}{\sqrt{2\pi\sigma_k^2}}
+    \exp\left(
+        -\frac{(x-\mu_k)^2}{2\sigma_k^2}
+    \right),
+\end{equation}
+%
+com $\mu_k$, $\sigma_k^2$ a média e variância da classe $k$.
+Voltando ao conjunto de dados na tabela, tem-se
+%
+\begin{align}
+    \mu_0 &\approx m_0 = \frac{1}{N_0} \sum_{x_i\in C_0} x_i = \frac{11.6}{5} = 2.320, &
+    \sigma_0^2 &\approx \frac{1}{N_0-1} \sum_{x_i\in C_0} (x_i - m_0)^2 = 0.287, \\
+    \mu_1 &\approx m_1 = \frac{1}{N_1} \sum_{x_i\in C_1} x_i = \frac{28.2}{7} = 4.029, &
+    \sigma_1^2 &\approx \frac{1}{N_1-1} \sum_{x_i\in C_1} (x_i - m_1)^2 = 1.916.
+\end{align}
+%
+Substituindo os momentos e aplicando a lei de Bayes para cada valor de teste, 
+as probabilidades de enfermidade são encontradas.
+
+\begin{table}[htbp!]
+    \centering
+    \begin{tabular}{c c c}
+    \toprule
+        $x_i$ & $P(C_0 | x_i)$ [\%] & $P(C_1 | x_i)$ [\%] \\
+    \midrule
+        5.7 & $<10^{-6}$ & $99.99$ \\
+        3.0 & $52.08$ & $47.92$ \\
+        2.6 & $73.28$ & $26.72$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
