@@ -1,5 +1,38 @@
 \section{Questão 2}
 
-\begin{respostas}
+Em um sistema de comunicação por modulação em frequência, o sinal de uma portadora com
+frequência de $\Omega_0$ (radianos/segundo) em um receptor é modelado por
+$X(t) = \cos(\Omega_0 t + \Theta)$
+onde $\Theta \sim \text{uniforme}[-\pi, \pi]$ é um sinal randômico modulante.
+%
+\begin{enumerate}
+    \item [a)] Encontre a função da expectância $\mu(t)$.
+    \item [b)] Encontre a função de correlação de $X(t)$.
+    \item [c)] Este processo randômico e WSS? Justifique.
+\end{enumerate}
 
+\begin{respostas}
+\begin{enumerate}
+    \item [a)] Analogamente ao que foi feito na questão 1, tem-se
+    %
+    \begin{equation}
+        \mu(t) 
+        = \E{X(t)} = \E{\cos(\Omega_0 t + \Theta)}
+        = \frac{1}{2\pi} \int_{-\pi}^{\pi} \cos(\Omega_0 t + \theta) d\theta
+        = 0.
+    \end{equation}
+
+    \item [b)] Tem-se
+    %
+    \begin{align}
+        R_X(t_1, t_2) 
+        &= \E{X(t_1) X(t_2)} \\
+        &= \E{\cos(\Omega_0 t_1 + \Theta) \cos(\Omega_0 t_2 + \Theta)} \\
+        &= \frac{1}{2\pi} \int_{-\pi}^{\pi} \cos(\Omega_0 t_1 + \theta) \cos(\Omega_0 t_2 + \theta) d\theta \\
+        &= \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{1}{2} [\cos(\Omega_0 (t_1 - t_2)) + \cos(2\theta + \Omega_0 (t_1 + t_2))] d\theta \\
+        &= \frac{1}{4\pi} [ 2\pi \cos(\Omega_0 (t_1 - t_2)) + 0 ] = \frac{1}{2} \cos(\Omega_0 (t_1 - t_2))
+    \end{align}
+
+    \item [c)] O processo randômico é WSS, pois a função da expectância $\mu(t)$ é constante e a função de correlação $R_X(t_1, t_2)$ depende apenas da diferença $t_1 - t_2$.
+\end{enumerate}
 \end{respostas}
