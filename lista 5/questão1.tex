@@ -1,0 +1,58 @@
+\section{Questão 1}
+
+Considere um processo randômico em tempo discreto $X[n]$ definido como
+%
+$$
+    X[n] = A\cos(\omega_0 n + \Phi)
+$$
+%
+onde $u(t)$ é a função degrau unitário,
+a frequência digital $\omega_0 = 3\frac{\pi}{16}$ (radianos/amostra),
+$A>0$, $A\in\mathbb{R}$ é uma constante e 
+$\Phi \sim \text{Uniform}[0, 2\pi]$, isto é,
+$\Phi$ tem distribuição de probabilidade uniforme e o espaço amostral de $\Phi$ é $(0, 2\pi)$.
+
+\begin{itemize}
+    \item [a)] Encontre a função da expectância $\mu[n]$.
+    \item [b)] Encontre a função de correlação de $R[m,n]$.
+    \item [c)] Este processo é randômico ou WSS? Justifique.
+\end{itemize}
+
+\begin{respostas}
+
+\begin{itemize}
+    \item [a)] 
+    Como a cossenoide tem média zero em um período, espera-se que $\mu[n] = 0$.
+    De fato, tem-se
+    %
+    \begin{align}
+        \mu[n] &= \E{X[n]} \\
+        &= \E{A\cos(\omega_0 n + \Phi)} \\
+        &= A\E{\cos(\omega_0 n + \Phi)} \\
+        &= A\int_{0}^{2\pi} \cos(\omega_0 n + \phi) f_\Phi(\phi) d\phi \\
+        &= A\int_{0}^{2\pi} \cos(\omega_0 n + \phi) \frac{1}{2\pi} d\phi \\
+        &= 0.
+    \end{align}
+    \item [b)] Tem-se
+    %
+    \begin{align}
+        R[m,n] &= \E{X[m]X[n]} \\
+        &= \E{A\cos(\omega_0 m + \Phi)A\cos(\omega_0 n + \Phi)} \\
+        &= A^2\E{\cos(\omega_0 m + \Phi)\cos(\omega_0 n + \Phi)} \\
+        &= A^2\int_{0}^{2\pi} \cos(\omega_0 m + \phi)\cos(\omega_0 n + \phi) f_\Phi(\phi) d\phi \\
+        &= A^2\int_{0}^{2\pi} \cos(\omega_0 m + \phi)\cos(\omega_0 n + \phi) \frac{1}{2\pi} d\phi \\
+        &= \frac{A^2}{2\pi} \int_{0}^{2\pi} \frac{1}{2} [\cos(\omega_0 (m-n)) + \cos(\omega_0 (m+n) + 2\phi)] d\phi \\
+        &= \frac{A^2}{4\pi} \left[
+                \int_{0}^{2\pi} \cos(\omega_0 (m-n)) d\phi + 
+                \int_{0}^{2\pi} \cos(\omega_0 (m+n) + 2\phi) d\phi 
+            \right] \\
+        &= \frac{A^2}{4\pi} \left[
+                2\pi \cos(\omega_0 (m-n)) + 0
+            \right] \\
+        &= \frac{A^2}{2} \cos(\omega_0 (m-n)).
+    \end{align}
+
+    \item [c)] $R[m,n]$ depende apenas da diferença $m-n$, tornando o processo WSS.
+\end{itemize}
+
+\end{respostas}

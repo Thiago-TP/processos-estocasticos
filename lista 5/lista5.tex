@@ -1,0 +1,111 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+    \definecolor{verdeunb}{cmyk}{1,0,1,0.2}
+    \definecolor{azulunb}{cmyk}{1,0.65,0,0.35}
+    \definecolor{amarelocheddar}{RGB}{255, 163, 0}
+    \definecolor{vermelhoescuro}{HTML}{CA3A27}
+    \colorlet{rulecolor}{verdeunb}
+\usepackage{pgfplots}
+    \pgfplotsset{compat=1.18} 
+    \usetikzlibrary{intersections, pgfplots.fillbetween}
+    \pgfdeclarelayer{ft}
+    \pgfdeclarelayer{bg}
+    \pgfsetlayers{bg,main,ft}
+\usepackage{csquotes}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[scaled]{helvet}
+\usepackage{stickstootext} % Fonte principal (Stix2)
+\usepackage[stickstoo,vvarbb]{newtxmath} % Fonte matemática (Stix2)
+    % \renewcommand{\familydefault}{\sfdefault}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+    \setlength{\headheight}{14pt}
+    \pagestyle{fancy}
+        % limpa cabeçalho
+        \fancyhead{}
+        \fancyhead[l]{Lista 5: módulos 7 e 8}
+        \fancyhead[c]{PPGEE 2166}
+        \fancyhead[r]{Processos Estocásticos}
+        % limpa rodapé
+        \fancyfoot{}
+        \fancyfoot[l]{Thiago Tomás de Paula}
+        \fancyfoot[r]{p. \thepage~de \pageref*{LastPage}}
+\usepackage{titlesec}
+    % \titleformat*{\section}{\sffamily\bfseries\color{verdeunb}}
+    \titleformat{\section}{\sffamily\bfseries\color{verdeunb}}{}{0em}{}
+\usepackage[colorlinks=true,allcolors=azulunb]{hyperref}
+
+\counterwithin{equation}{section}
+
+\setlength{\parindent}{0em}
+
+\newenvironment{respostas}{%
+    % {\color{rulecolor}\noindent\rule{\linewidth}{0.5pt}}%
+    \section*{Resposta}
+}{%
+    {\color{rulecolor}$\blacksquare$}\hfill%
+}
+\newcommand{\E}[1]{\ensuremath{\mathrm{E}\!\left[#1\right]}}
+\newcommand{\Var}[1]{\ensuremath{\mathrm{Var}\left[#1\right]}}
+
+
+\begin{document}
+
+\pagestyle{empty}
+
+    % Folha de rosto - Identificação
+    \begin{center}
+    \sffamily
+    \AddToShipoutPictureBG*{\includegraphics[height=\paperheight]{capa.pdf}}
+    \vspace*{8.25cm}
+        {\huge
+            Universidade de Brasília \\[3pt]
+            Faculdade de Tecnologia \\[3pt]
+            PPGEE \\
+        }
+    \vspace{3cm}
+        {\Huge\bfseries
+            Processos Estocásticos \\
+            Lista de Exercícios \\
+            Módulos 7 e 8 \\
+        }
+    \vfill
+        {\LARGE\bfseries\color{white}
+            Thiago Tomás de Paula \\[1em]
+            13 de julho de 2026
+        }
+    \end{center}
+    
+\newpage
+\pagestyle{fancy}
+
+\input{questão1.tex}
+\input{questão2.tex}
+\input{questão3.tex}
+\input{questão4.tex}
+\input{questão5.tex}
+\input{questão6.tex}
+\input{questão7.tex}
+\input{questão8.tex}
+\input{questão9.tex}
+\input{questão10.tex}
+\input{questão11.tex}
+\input{questão12.tex}
+\input{questão13.tex}
+\input{questão14.tex}
+\input{questão15.tex}
+
+
+\end{document}
