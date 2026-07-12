@@ -1,5 +1,115 @@
 \section{Questão 3}
 
+Considere um processo randômico $Y(t)$ definido por
+$$Y(t) = X\cos(\Omega t)u(t)$$
+onde $u(t)$ é a função degrau unitário, a frequência analógica $\Omega$ (radianos/segundos) é uma constante e $X$ é uma
+variável aleatória com distribuição de probabilidade uniforme e com espaço amostral $[0, 1]$.
+
+\begin{itemize}
+    \item [a)] Encontre $\E{Y(t)}$.
+    \item [b)] Encontre $\E{Y^2(t)}$.
+    \item [c)] Encontre a função de autocorrelação $R_Y(t_1, t_2)$ de $Y(t)$.
+    \item [d)] Encontre a função de autocovariância $C_Y(t_1, t_2)$ de $Y(t)$.
+    \item [e)] Determine as PDF's de $Y(t)$ em 
+    $t = 0$, 
+    $t = \frac{\pi}{4\Omega}$, 
+    $t = \frac{\pi}{2\Omega}$, 
+    $t = \frac{\pi}{\Omega}$, 
+    $t = \frac{3\pi}{4\Omega}$.
+\end{itemize}
+
 \begin{respostas}
+
+\begin{itemize}
+    \item [a)] Tem-se
+    %
+    $
+        \E{Y(t)} 
+        = \E{X\cos(\Omega t)u(t)}
+        = \E{X}\E{\cos(\Omega t)u(t)}
+        = \frac{1}{2} \cos(\Omega t)u(t).
+    $
+
+    \item [b)] Tem-se
+    %
+    \begin{align}
+        \E{Y^2(t)} 
+        &= \E{(X\cos(\Omega t)u(t))^2} \\
+        &= \E{X^2\cos^2(\Omega t)u^2(t)} \\
+        &= \E{X^2}\E{\cos^2(\Omega t)u^2(t)} \\
+        &= \frac{1}{12} \cos^2(\Omega t)u^2(t).
+    \end{align}
+
+    \item [c)] Tem-se
+    %
+    \begin{align}
+        R_Y(t_1, t_2) 
+        &= \E{Y(t_1)Y(t_2)} \\
+        &= \E{X\cos(\Omega t_1)u(t_1)X\cos(\Omega t_2)u(t_2)} \\
+        &= \E{X^2}\E{\cos(\Omega t_1)u(t_1)\cos(\Omega t_2)u(t_2)} \\
+        &= \frac{1}{12} \cos(\Omega t_1)u(t_1)\cos(\Omega t_2)u(t_2).
+    \end{align}
+
+    \item [d)] Tem-se
+    %
+    \begin{align}
+        C_Y(t_1, t_2) 
+        &= R_Y(t_1, t_2) - \mu_Y(t_1)\mu_Y(t_2) \\
+        &= \frac{1}{12} \cos(\Omega t_1)u(t_1)\cos(\Omega t_2)u(t_2) - 
+           \frac{1}{2} \cos(\Omega t_1)u(t_1) 
+           \frac{1}{2} \cos(\Omega t_2)u(t_2) \\
+        &= \frac{1}{12} \cos(\Omega t_1)u(t_1)\cos(\Omega t_2)u(t_2) - 
+           \frac{1}{4} \cos(\Omega t_1)u(t_1)\cos(\Omega t_2)u(t_2) \\
+        &= -\frac{1}{6} \cos(\Omega t_1)u(t_1)\cos(\Omega t_2)u(t_2).
+    \end{align}
+
+    \item [e)] No instante genérico $t=k\pi/\Omega$, $k$ constante, tem-se
+    %
+    \begin{equation}
+        Y(t) = 
+        \begin{cases}
+            X\cos(k\pi), & k \geq 0 \\ 
+            0, & k < 0
+        \end{cases},
+    \end{equation}
+    %
+    ou seja, a PDF de $Y$ é a PDF de $X$ escalada por $\cos(k\pi)$.
+    Investigam-se $k=0$, $k=1/4$, $k=1/2$, $k=3/4$ e $k=1$.
+    A figura abaixo ilustra as PDFs de $Y(t)$ para os instantes solicitados.
+    %
+    \begin{figure}[htbp]
+        \centering
+        \begin{tikzpicture}[scale=1.5, > = latex]
+            \draw [->] (-1.2, 0) -- (1.2, 0) node [right] {$y$};
+            \draw [->] (0, -1.2) -- (0, 1.2) node [above] {$f_Y(y)$};
+
+            \draw [thick, azulunb, fill=azulunb] (0, 1) circle (0.05) --++ (1, 0) circle (0.05);
+            \draw [thick, azulunb!75, fill=azulunb!75] (0, 0.707) circle (0.05) --++ (0.707, 0) circle (0.05);
+            \draw [thick, azulunb!50, fill=azulunb!50] (0, 0.5) circle (0.05) --++ (0.5, 0) circle (0.05);
+            \draw [thick, verdeunb, fill=verdeunb] (0, -0.707) circle (0.05) --++ (-0.707, 0) circle (0.05);
+            \draw [thick, verdeunb!75, fill=verdeunb!75] (0, -1) circle (0.05) --++ (-1, 0) circle (0.05);
+
+            \draw [thick, dashed, azulunb] (1, 1) --++ (0, -1);
+            \draw [thick, dashed, azulunb!75] (0.707, 0.707) --++ (0, -0.707);
+            \draw [thick, dashed, azulunb!50] (0.5, 0.5) --++ (0, -0.5);
+            \draw [thick, dashed, verdeunb] (-0.707, -0.707) --++ (0, 0.707);
+            \draw [thick, dashed, verdeunb!75] (-1, -1) --++ (0, 1);
+
+            \draw 
+                (1.5, 1) node [right, azulunb] {$k=0$}
+                (1.5, 0.707) node [right, azulunb!75] {$k=1/4$}
+                (1.5, 0.5) node [right, azulunb!50] {$k=1/2$}
+                (1.5, -0.707) node [right, verdeunb] {$k=3/4$}
+                (1.5, -1) node [right, verdeunb!75] {$k=1$}
+                %
+                (2.5, 1) node [right, azulunb] {($t=0$)}
+                (2.5, 0.707) node [right, azulunb!75] {($t=\pi/4\Omega$)}
+                (2.5, 0.5) node [right, azulunb!50] {($t=\pi/2\Omega$)}
+                (2.5, -0.707) node [right, verdeunb] {($t=3\pi/4\Omega$)}
+                (2.5, -1) node [right, verdeunb!75] {($t=\pi/\Omega$)}
+            ;
+        \end{tikzpicture}
+    \end{figure}
+\end{itemize}
     
 \end{respostas}
