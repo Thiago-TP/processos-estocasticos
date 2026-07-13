@@ -1,5 +1,90 @@
 \section{Questão 4}
 
-\begin{respostas}
+Seja $X_0$, $X_1$, $X_2$, $\ldots$ uma sequência temporal de variáveis randômicas i.i.d. com média
+$\E{X_i} = \frac{\pi}{2}$
+e variância
+$\Var{X_i} = \pi$.
+Considere o processo aleatório em tempo discreto $\{Y[n], n \in \mathbb{N}\}$ definido como
+%
+$$
+    Y[n] = \frac{1}{n} \sum_{i=0}^{n-1} X_i.
+$$
+Determine
+%
+\begin{multicols}{2}
+\begin{itemize}
+    \item [a)] $\mu_Y[n]$.
+    \item [b)] $R_Y[m,n]$ para todo $m,n \in \mathbb{N}$.
+\end{itemize}
+\end{multicols}
 
+\begin{respostas}
+\begin{itemize}
+    \item [a)] Pela linearidade da expectância, tem-se
+    %
+    \begin{equation}
+        \mu_Y[n] 
+        = \E{Y[n]}
+        = \E{\frac{1}{n} \sum_{i=0}^{n-1} X_i}
+        = \frac{1}{n} \sum_{i=0}^{n-1} \E{X_i}
+        = \frac{1}{n} n \frac{\pi}{2} = \frac{\pi}{2}.
+    \end{equation}
+
+    \item [b)] Pela independência das variáveis aleatórias $X_i$, e assumindo $m \geq n$, tem-se
+    %
+    \begin{align}
+        R_Y[m,n] 
+        &= \E{Y[m]Y[n]} \\
+        &= \E{\frac{1}{m} \sum_{i=0}^{m-1} X_i \cdot \frac{1}{n} \sum_{j=0}^{n-1} X_j} \\
+        &= \frac{1}{mn} \sum_{i=0}^{m-1} \sum_{j=0}^{n-1} \E{X_i X_j} \\
+        &= \frac{1}{mn} \sum_{i=0}^{m-1} \sum_{j=0}^{n-1} 
+            \begin{cases}
+                \Var{X_i} + \E{X_i}^2, & i = j \\
+                \E{X_i}\E{X_j}, & i \neq j
+            \end{cases} \\
+        &= \frac{1}{mn} \left[
+                n(\Var{X_i} + \E{X_i}^2) + n(m-1)\E{X_i}^2
+            \right] \\
+        &= \frac{\pi + \frac{\pi^2}{4}}{m} + \frac{m-1}{m}\frac{\pi^2}{4}\\
+        &= \frac{\pi}{m} + \frac{\pi^2}{4}.
+    \end{align}
+    %
+    % Figura mostrando quadro de valores de E[XiXj] para m=8 e n=4
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[step=1cm,gray,very thin] (0,0) grid (8,4);
+            \foreach \x in {0,...,7} {
+                \foreach \y in {0,...,3} {
+                    \ifnum\x=\y
+                        \node [fill=azulunb!20] at (\x+0.5,3.5-\y) {$A_{\x\y}$};
+                    \else
+                        \node [fill=verdeunb!20] at (\x+0.5,3.5-\y) {$B_{\x\y}$};
+                    \fi
+                }
+            }
+            \draw 
+                (0, 3.5) node [left] {$i=0$}
+                (0, 2.5) node [left] {$i=1$}
+                (0, 1.5) node [left] {$i=2$}
+                (0, 0.5) node [left] {$i=3$}
+                %
+                (0.5, 4) node [above] {\rotatebox{30}{$j=0$}}
+                (1.5, 4) node [above] {\rotatebox{30}{$j=1$}}
+                (2.5, 4) node [above] {\rotatebox{30}{$j=2$}}
+                (3.5, 4) node [above] {\rotatebox{30}{$j=3$}}
+                (4.5, 4) node [above] {\rotatebox{30}{$j=4$}}
+                (5.5, 4) node [above] {\rotatebox{30}{$j=5$}}
+                (6.5, 4) node [above] {\rotatebox{30}{$j=6$}}
+                (7.5, 4) node [above] {\rotatebox{30}{$j=7$}}
+            ;
+        \end{tikzpicture}
+        \caption{%
+            $\E{X_i X_j}$ para $m=8$ e $n=4$.
+            $A_{ij} = \Var{X_i} + \E{X_i}^2 = \pi + \frac{\pi^2}{4}$ e 
+            $B_{ij} = \E{X_i}\E{X_j} = \frac{\pi^2}{4}$.
+            Existem $nm$ elementos, dos quais $n$ são $A$ e $n(m-1)$, $B$.
+        }
+    \end{figure}
+\end{itemize}
 \end{respostas}
