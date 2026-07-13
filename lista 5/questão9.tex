@@ -1,5 +1,29 @@
 \section{Questão 9}
 
-\begin{respostas}
+Um cabo possui, em média, 4 defeitos por metro. 
+Suponha que o número de defeitos por metro siga uma distribuição de Poisson.
+$$X\sim \text{Poisson}(\lambda=4)$$
+Determine:
+%
+\begin{itemize}
+    \item[a)] A probabilidade de um metro de cabo não apresentar defeitos. 
+    \item[b)] A probabilidade de um metro de cabo apresentar pelo menos 3 defeitos. 
+\end{itemize}
 
+\begin{respostas}
+    O procedimento aqui é similar ao das questões anteriores, mas com os valores de $t$ representando comprimentos ao invés de durações.
+    \begin{itemize}
+        \item[a)] $(k, t) = (0, 1) \implies P(X=0) = e^{-4} \approx 1.83\%$.
+        \item[b)] Tem-se
+        %
+        \begin{align}
+            \{(k, t) \in \mathbb{R}^2 | k\geq 3, t=1\} \implies 
+            P(X \geq 3) 
+            &= 1 - P(X < 3) \\
+            &= 1 - [P(X=0) + P(X=1) + P(X=2)] \\
+            &= 1 - \left[e^{-4} + e^{-4} \cdot 4 + e^{-4} \cdot \frac{4^2}{2}\right] \\
+            &= 1 - e^{-4} \cdot 13 \\
+            &\approx 76.19\%
+        \end{align}
+    \end{itemize}
 \end{respostas}
