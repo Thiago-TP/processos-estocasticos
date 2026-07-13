@@ -1,5 +1,57 @@
 \section{Questão 5}
 
-\begin{respostas}
+Seja $X(t)$ um processo WSS de média zero e com função de correlação $R_X(\tau)$. 
+Seja
+$$Y(t) = X(t) \cos(\Omega_0 t + \Theta)$$
+onde $\Theta \sim \text{Uniforme}[-\pi, \pi]$ é independente do processo $X(t)$.
+%
+\begin{itemize}
+    \item [a)] Encontre a função de correlação de $Y(t)$.
+    \item [b)] Encontre a função de correlação cruzada de $X(t)$ e $Y(t)$.
+    \item [c)] $Y(t)$ é WSS?
+\end{itemize}
 
+\begin{respostas}
+    \begin{itemize}
+        \item [a)] Tem-se
+        %
+        \begin{align}
+            R_Y(t_1, t_2) 
+            &= \E{Y(t_1)Y(t_2)} \\
+            &= \E{X(t_1)\cos(\Omega_0 t_1 + \Theta)X(t_2)\cos(\Omega_0 t_2 + \Theta)} \\
+            &= \E{X(t_1)X(t_2)}\E{\cos(\Omega_0 t_1 + \Theta)\cos(\Omega_0 t_2 + \Theta)} \\
+            &= R_X(t_1 - t_2)\E{\frac{1}{2} \{
+                \cos(\Omega_0 (t_1 - t_2)) + 
+                \cos(2\Theta + \Omega_0 (t_1 + t_2))
+            \}} \\ 
+            &= R_X(t_1 - t_2)\frac{1}{2} \{
+                \cos(\Omega_0 (t_1 - t_2)) + 
+                \E{\cos(2\Theta + \Omega_0 (t_1 + t_2))}
+            \} \\
+            &= R_X(t_1 - t_2)\frac{1}{2} \{
+                \cos(\Omega_0 (t_1 - t_2)) + 
+                0
+            \} \\
+            &= \frac{1}{2} R_X(t_1 - t_2) \cos(\Omega_0 (t_1 - t_2)).
+        \end{align}
+
+        \item [b)] Tem-se
+        %
+        \begin{align}
+            R_{XY}(t_1, t_2) 
+            &= \E{X(t_1)Y(t_2)} \\
+            &= \E{X(t_1)X(t_2)\cos(\Omega_0 t_2 + \Theta)} \\
+            &= \E{X(t_1)X(t_2)}\E{\cos(\Omega_0 t_2 + \Theta)} \\
+            &= R_X(t_1 - t_2)\E{\cos(\Omega_0 t_2 + \Theta)} \\
+            &= 0.
+        \end{align}
+
+        \item [c)] 
+        O item (a) demonstra que a autocorrelação de $Y(t)$ depende apenas da diferença $t_1 - t_2$,
+        então resta verificar se a média de $Y(t)$ é estacionária.
+        Analogamente ao que foi feito no item (b), tem-se
+        %
+        $\mu_Y(t) = \E{Y(t)} = \E{X(t)}\E{\cos(\Omega_0 t + \Theta)} = 0$,
+        e portanto $Y$ é WSS.
+    \end{itemize}
 \end{respostas}
