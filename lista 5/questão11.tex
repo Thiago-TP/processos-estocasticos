@@ -1,5 +1,29 @@
 \section{Questão 11}
 
-\begin{respostas}
+Para a cadeia de Markov mostrada na figura determine a sua respectiva matriz de transição de probabilidade
+%
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=2.25]
+        \node[state] (0) {0};
+        \node[state, right=2 of 0] (1) {1};
+        \node[state, right=2 of 1] (2) {2};
 
+        \path [->]
+            (0) edge[loop above] node[above] {$1$} (0)
+            (1) edge[bend left] node[below] {$p$} (0)
+            (1) edge[loop above] node[above] {$1-p$} (1)
+            (2) edge[bend left] node[below] {$p$} (1)
+            (2) edge[loop above] node[above] {$1-p$} (2);
+    \end{tikzpicture}
+\end{figure}
+
+\begin{respostas}
+    Por inspeção, conclui-se que a matriz de transição de probabilidade é dada por
+    %
+    $$\begin{bmatrix}
+        1 & 0 & 0 \\
+        p & 1-p & 0 \\
+        0 & p & 1-p
+    \end{bmatrix}.$$
 \end{respostas}
