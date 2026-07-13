@@ -13,28 +13,28 @@ e de haver 40 ocorrências entre os dias 25 e 28 do mês.
 \end{itemize}
 
 \begin{respostas}
-    De maneira geral, a probabilidade de haver $k$ ocorrências em um intervalo de tempo de $t$ dias é dada pela distribuição de Poisson:
+    A probabilidade de haver $k$ ocorrências em um intervalo de tempo de $t$ dias é dada pela distribuição de Poisson:
     %
     \begin{equation}
         P(X = k) = \frac{e^{-\lambda t} (\lambda t)^k}{k!}
     \end{equation}
     %
     \begin{itemize}
-        \item[a)] Sendo a distribuição de Poisson com parâmetro $\lambda = 12 \times 7 = 84$, a probabilidade de haver 100 ocorrências na primeira semana do mês é:
+        \item[a)] Sendo a distribuição de Poisson com parâmetro $t = 7$, a probabilidade de haver $k=100$ ocorrências na primeira semana do mês é:
         %
         \begin{equation}
             P(X = 100) = \frac{e^{-84} \cdot 84^{100}}{100!}
             \approx 0.95\%
         \end{equation}
         
-        \item[b)] Sendo a distribuição de Poisson com parâmetro $\lambda = 12 \times 7 = 84$, a probabilidade de haver 10 ocorrências na última semana do mês é:
+        \item[b)] Sendo a distribuição de Poisson com parâmetro $t = 7$, a probabilidade de haver $k=10$ ocorrências na última semana do mês é:
         %
         \begin{equation}
             P(X = 10) = \frac{e^{-84} \cdot 84^{10}}{10!}
             < 10^{-23}
         \end{equation}
 
-        \item[c)] Sendo a distribuição de Poisson com parâmetro $\lambda = 12$, a probabilidade de não haver nenhuma ocorrência no primeiro domingo do mês é:
+        \item[c)] Sendo a distribuição de Poisson com parâmetro $t = 1$, a probabilidade de não haver nenhuma ocorrência ($k=0$) no primeiro domingo do mês é:
         %
         \begin{equation}
             P(X = 0) = \frac{e^{-12} 12^0}{0!}
@@ -42,14 +42,20 @@ e de haver 40 ocorrências entre os dias 25 e 28 do mês.
         \end{equation}
 
         \item[d)] Na ordem em que as probabilidades foram solicitadas, usa-se a distribuição de Poisson com os seguintes parâmetros:
-        $\lambda = 12 \times 4 = 48$ e $k = 50$;
-        $\lambda = 12 \times 3 = 36$ e $k = 20$;
-        $\lambda = 12 \times 4 = 48$ e $k = 40$.
+        $t = 4$ e $k = 50$;
+        $t = 3$ e $k = 20$;
+        $t = 4$ e $k = 40$:
         %
         \begin{align}
-            P(X=50) &= \frac{e^{-48} 48^{50}}{50!} \approx 5.41\% \\
-            P(X=20) &= \frac{e^{-36} 36^{20}}{20!} \approx 0.13\% \\
-            P(X=40) &= \frac{e^{-48} 48^{40}}{40!} \approx 3.10\%
+            P(X=50) &= \frac{e^{-48} 48^{50}}{50!} \approx 5.41\%, \\
+            P(X=20) &= \frac{e^{-36} 36^{20}}{20!} \approx 0.13\%, \\
+            P(X=40) &= \frac{e^{-48} 48^{40}}{40!} \approx 3.10\%.
         \end{align}
+        %
+        Como os eventos são independentes, a probabilidade de ocorrerem todos os eventos é o produto das probabilidades individuais:
+        %
+        \begin{equation}
+            P(X=50) \cdot P(X=20) \cdot P(X=40) \approx 2.14 \cdot 10^{-6}.
+        \end{equation}
     \end{itemize}
 \end{respostas}

@@ -1,5 +1,25 @@
 \section{Questão 7}
 
+O número de pedidos que chegam a uma loja que comercializa produtor pela internetpode ser modelado por um processo de Poisson com $\lambda = 20$ pedidos/hora. 
+A loja opera das 8:00 às 20:00.
+
+\begin{itemize}
+    \item [a)] Encontre a probabilidade de haver 6 pedidos entre 8:30 e 10:30.
+    \item [b)] Encontre a probabilidade de que não haja pedidos entre 14h e 17h.
+    \item [c)] Encontre a probabilidade de haver 15 pedidos entre 9:30h e 11h e 20 pedidos entre 14:30 e 15:30.
+\end{itemize}
+
 \begin{respostas}
 
+O procedimento aqui é análogo ao da questão anterior.
+
+\begin{itemize}
+    \item [a)] $P(X = 6) = e^{-20 \times 2} (20 \times 2)^6/6! \approx 10^{-5}$
+    \item [b)] $P(X = 0) = e^{-20 \times 3} < 10^{-15}$
+    \item [c)] 
+    $P(X = 15) \cdot P(X = 20) 
+    = \frac{e^{-20 \times 1.5} (20 \times 1.5)^{15}}{15!} \cdot 
+      \frac{e^{-20 \times 1} (20 \times 1)^{20}}{20!}
+    \approx 0.08\%$
+\end{itemize}
 \end{respostas}
