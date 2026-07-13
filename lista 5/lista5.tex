@@ -11,6 +11,11 @@
     \definecolor{amarelocheddar}{RGB}{255, 163, 0}
     \definecolor{vermelhoescuro}{HTML}{CA3A27}
     \colorlet{rulecolor}{verdeunb}
+    \usetikzlibrary{shapes.geometric,arrows,positioning,calc}
+    \tikzset{
+        state/.style={circle, draw=verdeunb, fill=verdeunb!10, thick, minimum size=6mm},
+        every edge/.style={draw=verdeunb, thick},
+    }
 \usepackage{pgfplots}
     \pgfplotsset{compat=1.18} 
     \usetikzlibrary{intersections, pgfplots.fillbetween}
