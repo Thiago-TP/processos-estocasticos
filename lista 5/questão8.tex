@@ -1,5 +1,23 @@
 \section{Questão 8}
 
-\begin{respostas}
+A quantidade de bytes que chegam a um dispositivo de monitoração de processos pode ser modelado por um processo de Poisson.
+Sabe-se que $\lambda = 32$ bytes/microssegundos. 
+Este sistema fica em operação 24 horas por dia.
+%
+\begin{itemize}
+    \item [a)] Encontre a probabilidade de chegar 42 megabytes entre 08:30:00 e 08:30:02.
+    \item [b)] Compute o valor da probabilidade de chegar 36 megabytes entre 00:00:00 e 00:00:01 e, de chegar 64 megabytes entre 05:29:10 e 05:29:12.
+    \item [c)] Encontre a probabilidade de chegar 16 megabytes 18:30:00 e 18:30:01 e, não chegar nenhum byte no segundo seguinte.
+\end{itemize}
 
+\begin{respostas}
+    O procedimento aqui é análogo ao das questões anteriores.
+    Entretanto, aqui é útil converter as unidades de taxa para megabytes por segundo.
+    Por megabyte, entende-se $10^6$ bytes (ao contrário de um mebibyte, que é $2^{20}$ bytes).
+    Logo: $\lambda = 32 \times 10^6$ bytes/segundo $= 32 \times 10^6 \times 10^{-6}$ megabytes/segundo = 32 megabytes/segundo.
+\begin{itemize}
+    \item [a)] $(k,t) = (42, 2) \implies P(X = 42) = e^{-32 \times 2} (32 \times 2)^{42}/(42)! \approx 0.08\%$
+    \item [b)] $(k,t) \in \{(36, 1), (64, 2)\} \implies P(X = 36) \cdot P(X = 64) \approx 0.26\%$
+    \item [c)] $(k,t) \in \{(16, 1), (0, 1)\} \implies P(X = 16) \cdot P(X = 0) < 10^{-17}$
+\end{itemize}
 \end{respostas}
