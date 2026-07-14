@@ -1,5 +1,47 @@
 \section{Questão 13}
 
-\begin{respostas}
+Construa o diagrama de transição de estados $S = \{0, 1, 2\}$ para acadeia de Markov cuja matriz de transição é
+%
+$$
+P =
+\begin{bmatrix}
+    1/2 & 1/2 & 0 \\
+    1/4 & 0 & 3/4 \\
+    1/2 & 1/2 & 0
+\end{bmatrix}
+$$
+%
+Se $P(X_0=0)=0$, $P(X_0=1)=1$, $P(X_0=2)=0$. 
+%
+\begin{itemize}
+    \item [a)] Encontre $P(X_0=1, X_1=1, X_2=2)$.
+    \item [b)] Encontre $P(X_0=1, X_1=0, X_2=2)$.
+\end{itemize}
 
+\begin{respostas}
+    O diagrama de transição de estados é dado por
+    %
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node[state] (0) {0};
+            \node[state, right=2 of 0] (1) {1};
+            \node[state, right=2 of 1] (2) {2};
+
+            \path [->]
+                (0) edge[bend left] node [above] {$1/2$} (1)
+                (0) edge[loop above] node [above] {$1/2$} (0)
+                %
+                (1) edge[bend left] node [above] {$1/4$} (0)
+                (1) edge[bend left] node [above] {$3/4$} (2)
+                %
+                (2) edge[bend left] node [below] {$1/2$} (0)
+                (2) edge[bend left] node [above] {$1/2$} (1);
+        \end{tikzpicture}
+    \end{figure}
+    %
+    \begin{itemize}
+        \item [a)] $P(X_0=1, X_1=1, X_2=2) = P(X_0=1) \cdot P(X_1=1 | X_0=1) \cdot P(X_2=2 | X_1=1) = 0$.
+        \item [b)] $P(X_0=1, X_1=0, X_2=2) = P(X_0=1) \cdot P(X_1=0 | X_0=1) \cdot P(X_2=2 | X_1=0) = 0$.
+    \end{itemize}
 \end{respostas}
